@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>114學年度親職教育日 - 青溪國小</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app-wrap">
+        <div class="app-header">
+            <h1>114學年度親職教育日</h1>
+            <div class="school-tag">青溪國小園遊會服務平台</div>
+        </div>
+
+        <div class="nav-grid">
+            <a href="https://docs.google.com/forms/d/1ofmWoXQsNtqirKLW-tRrmjBQn8X9Occae6-AWoHlFSQ/viewform"
+                target="_blank" class="nav-card red-border">
+                <span class="nav-icon">🚨</span>
+                <span class="nav-label">環境報修</span>
+            </a>
+            <a href="https://www.csps.tyc.edu.tw/modules/tadnews/page.php?nsn=29" target="_blank"
+                class="nav-card green-border">
+                <span class="nav-icon">🗺️</span>
+                <span class="nav-label">學校地圖</span>
+            </a>
+        </div>
+
+        <div class="content-card">
+            <div class="card-title">📅 活動時程 (115/3/28)</div>
+            <ul class="timeline">
+                <li><span class="t-time">08:00</span> <span class="t-info">社團表演與開幕</span></li>
+                <li><span class="t-time">09:00</span> <span class="t-info">園遊會攤位開始</span></li>
+                <li><span class="t-time">11:20</span> <span class="t-info">整理環境與放學</span></li>
+            </ul>
+            <div class="vacation-tag">📌 115/4/2 (四) 為本次活動補假</div>
+        </div>
+
+        <div class="content-card">
+            <div class="card-title">🔍 攤位快速查詢</div>
+            <input type="text" id="searchInput" class="search-bar" placeholder="輸入班級(如502)或關鍵字(如餅乾)...">
+
+            <div class="table-scroll">
+                <table id="boothTable">
+                    <thead>
+                        <tr>
+                            <th>班級</th>
+                            <th>攤位名稱</th>
+                            <th>類型</th>
+                            <th>位置</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>101</td>
+                            <td>一起來逛街</td>
+                            <td><span class="tag tag-goods">物品</span></td>
+                            <td>和平樓 1F</td>
+                        </tr>
+                        <tr>
+                            <td>102</td>
+                            <td>102 號寶庫</td>
+                            <td><span class="tag tag-goods">物品</span></td>
+                            <td>和平樓 1F</td>
+                        </tr>
+                        <tr>
+                            <td>103</td>
+                            <td>蛋好物</td>
+                            <td><span class="tag tag-goods">物品</span></td>
+                            <td>和平樓 1F</td>
+                        </tr>
+                        <tr>
+                            <td>108</td>
+                            <td>108快樂小舖</td>
+                            <td><span class="tag tag-goods">物品</span></td>
+                            <td>和平樓 1F</td>
+                        </tr>
+                        <tr>
+                            <td>201</td>
+                            <td>幸福柑仔店</td>
+                            <td><span class="tag tag-goods">物品</span></td>
+                            <td>和平樓 2F</td>
+                        </tr>
+                        <tr>
+                            <td>205</td>
+                            <td>二五歡樂市集</td>
+                            <td><span class="tag tag-goods">物品</span></td>
+                            <td>和平樓 2F</td>
+                        </tr>
+                        <tr>
+                            <td>206</td>
+                            <td>206尋寶店</td>
+                            <td><span class="tag tag-goods">物品</span></td>
+                            <td>和平樓 2F</td>
+                        </tr>
+                        <tr>
+                            <td>302</td>
+                            <td>302奇幻屋</td>
+                            <td><span class="tag tag-goods">物品</span></td>
+                            <td>和平樓 3F</td>
+                        </tr>
+                        <tr>
+                            <td>303</td>
+                            <td>歡樂33</td>
+                            <td><span class="tag tag-food">食物</span></td>
+                            <td>和平樓 3F</td>
+                        </tr>
+                        <tr>
+                            <td>304</td>
+                            <td>304攤位</td>
+                            <td><span class="tag tag-food">食物</span></td>
+                            <td>和平樓 3F</td>
+                        </tr>
+                        <tr>
+                            <td>305</td>
+                            <td>五告吼呷</td>
+                            <td><span class="tag tag-food">食物</span></td>
+                            <td>和平樓 3F</td>
+                        </tr>
+                        <tr>
+                            <td>308</td>
+                            <td>308商店屋</td>
+                            <td><span class="tag tag-goods">物品</span></td>
+                            <td>和平樓 3F</td>
+                        </tr>
+                        <tr>
+                            <td>309</td>
+                            <td>三九幸福</td>
+                            <td><span class="tag tag-game">遊戲</span></td>
+                            <td>和平樓 3F</td>
+                        </tr>
+                        <tr>
+                            <td>407</td>
+                            <td>不平凡的407</td>
+                            <td><span class="tag tag-goods">物品</span></td>
+                            <td>和平樓 4F</td>
+                        </tr>
+                        <tr>
+                            <td>408</td>
+                            <td>408無限城</td>
+                            <td><span class="tag tag-food">食物</span></td>
+                            <td>和平樓 4F</td>
+                        </tr>
+                        <tr>
+                            <td>409</td>
+                            <td>歡樂選購 409</td>
+                            <td><span class="tag tag-goods">物品</span></td>
+                            <td>和平樓 4F</td>
+                        </tr>
+                        <tr>
+                            <td>502</td>
+                            <td>吐司市集</td>
+                            <td><span class="tag tag-game">遊戲</span></td>
+                            <td>和平樓 5F</td>
+                        </tr>
+                        <tr>
+                            <td>506</td>
+                            <td>讚不絕口666</td>
+                            <td><span class="tag tag-food">食物</span></td>
+                            <td>和平樓 5F</td>
+                        </tr>
+                        <tr>
+                            <td>508</td>
+                            <td>奇雞街坊</td>
+                            <td><span class="tag tag-goods">物品</span></td>
+                            <td>和平樓 5F</td>
+                        </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

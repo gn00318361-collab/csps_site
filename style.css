@@ -30,6 +30,8 @@ body {
   text-align: center;
   margin-bottom: 25px;
   box-shadow: 0 10px 25px rgba(46, 125, 50, 0.2);
+  position: relative;
+  overflow: hidden;
 }
 
 .app-header h1 {
@@ -43,6 +45,51 @@ body {
   opacity: 0.9;
   margin-top: 8px;
   font-weight: 300;
+}
+
+/* 倒數計時器 */
+.countdown-box {
+  background: rgba(255, 255, 255, 0.2);
+  display: inline-block;
+  padding: 8px 15px;
+  border-radius: 20px;
+  margin-top: 15px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.countdown-box span {
+  font-size: 1.2rem;
+  color: #fffde7;
+  margin: 0 2px;
+}
+
+/* 跑馬燈公告 */
+.marquee-container {
+  background: #fff3e0;
+  border-radius: 12px;
+  padding: 10px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #ffe0b2;
+  color: #e65100;
+  font-weight: bold;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.marquee-content {
+  display: inline-block;
+  animation: marquee 15s linear infinite;
+  padding-left: 100%; /* 從最右邊開始 */
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
 }
 
 /* 按鈕卡片 */
@@ -288,3 +335,31 @@ table {
 .tag-food { background: #ff7043; }
 .tag-goods { background: #29b6f6; }
 .tag-game { background: #ab47bc; }
+
+/* 回到頂部按鈕 */
+.back-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 50px;
+  height: 50px;
+  background-color: var(--green);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  display: none; /* 預設隱藏 */
+  z-index: 999;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.back-to-top:hover {
+  background-color: var(--dark-green);
+  transform: scale(1.1);
+}
+
+.back-to-top:active {
+  transform: scale(0.9);
+}

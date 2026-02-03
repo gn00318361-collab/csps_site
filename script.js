@@ -2,7 +2,48 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('searchInput');
     const filterBtns = document.querySelectorAll('.filter-btn');
     const tableRows = document.querySelectorAll("#boothTable tbody tr");
+    const backToTopBtn = document.getElementById('backToTop');
+    
+    // --- 倒數計時器邏輯 ---
+    const targetDate = new Date("2026-03-28T09:00:00").getTime(); // 115/3/28
+    
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
 
+        if (distance < 0) {
+            document.getElementById("countdown").innerHTML = "🎉 活動進行中！";
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+        document.getElementById("days").innerText = days;
+        document.getElementById("hours").innerText = hours;
+    }
+    
+    // 立即執行一次並每小時更新
+    updateCountdown();
+    setInterval(updateCountdown, 1000 * 60 * 60);
+
+    // --- 回到頂部按鈕邏輯 ---
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTopBtn.style.display = 'block';
+        } else {
+            backToTopBtn.style.display = 'none';
+        }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // --- 攤位列表邏輯 (初始化與篩選) ---
     // 1. 初始化：給每一行加上 data-category 屬性
     tableRows.forEach(row => {
         // 假設「類型」在第三個欄位 (index 2)
@@ -20,12 +61,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // 2. 篩選按鈕點擊事件
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // 移除所有 active
             filterBtns.forEach(b => b.classList.remove('active'));
-            // 加上當前 active
             btn.classList.add('active');
-            
-            // 執行篩選
             filterTable();
         });
     });
@@ -42,13 +79,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const rowText = row.textContent.toUpperCase();
             const rowCategory = row.getAttribute('data-category');
             
-            // 檢查關鍵字
             const matchesSearch = rowText.indexOf(searchText) > -1;
-            
-            // 檢查分類 (如果是 'all' 則通過，否則必須對應 category)
             const matchesCategory = (activeCategory === 'all') || (rowCategory === activeCategory);
 
-            // 兩者都符合才顯示
             if (matchesSearch && matchesCategory) {
                 row.style.display = "";
             } else {

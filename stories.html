@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>無限城故事牆 - 青溪國小園遊會</title>
+    <link rel="stylesheet" href="style.css?v=story">
+    <style>
+        body { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); }
+        .hero { text-align: center; padding: 40px 20px; background: white; border-radius: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .hero h2 { color: #e65100; margin-bottom: 10px; font-size: 1.8rem; }
+        .hero p { color: #555; line-height: 1.6; }
+        .cta-btn { display: inline-block; background: #fb8c00; color: white; padding: 10px 25px; border-radius: 50px; text-decoration: none; margin-top: 15px; font-weight: bold; transition: transform 0.2s; }
+        .cta-btn:hover { transform: scale(1.05); background: #f57c00; }
+        
+        .story-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 10px; }
+        .story-card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: transform 0.3s; border-top: 5px solid #ffcc80; }
+        .story-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        .story-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .story-author { font-weight: bold; color: #d84315; font-size: 0.9rem; }
+        .story-tag { background: #ffe0b2; color: #e65100; padding: 3px 8px; border-radius: 10px; font-size: 0.8rem; }
+        .story-title { font-size: 1.2rem; color: #333; margin-bottom: 10px; }
+        .story-content { color: #666; font-size: 0.95rem; line-height: 1.6; }
+        .story-footer { margin-top: 15px; text-align: right; color: #999; font-size: 0.8rem; }
+        
+        .nav-back { display: block; text-align: center; margin: 20px; color: #e65100; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="app-wrap">
+        <a href="index.html" class="nav-back">← 回到園遊會首頁</a>
+
+        <div class="hero">
+            <h2>🏰 無限城的故事牆</h2>
+            <p>園遊會不只是買賣，更是我們共同的回憶。<br>每一個攤位背後，都有一個溫暖的故事。</p>
+            <a href="https://forms.gle/X9WpZLDoxUyx4BT58" target="_blank" class="cta-btn">✍️ 投稿你的故事</a>
+        </div>
+
+        <div class="story-grid">
+            
+            <!-- 引言故事 -->
+            <div class="story-card" style="border-top-color: #d84315;">
+                <div class="story-header">
+                    <span class="story-author">🌟 站長分享</span>
+                    <span class="story-tag">服務精神</span>
+                </div>
+                <h3 class="story-title">記得300個名字的清潔員</h3>
+                <p class="story-content">
+                    曾經有一家清潔公司的業績不好，於是辦了一個「清潔員故事大賽」。<br>
+                    冠軍是一位小學清潔員，她因為工作熟練，省下的時間都用來跟學生互動，甚至記得全校300多個孩子的名字。<br>
+                    這讓我們知道，服務不只是掃地，更是建立「連結」。希望我們的園遊會，也能充滿這樣溫暖的連結。
+                </p>
+                <div class="story-footer">2026/02/05</div>
+            </div>
+
+            <!-- 510 故事 (匿名) -->
+            <div class="story-card">
+                <div class="story-header">
+                    <span class="story-author">某班導師分享</span>
+                    <span class="story-tag">幕後花絮</span>
+                </div>
+                <h3 class="story-title">布幕後的秘密與撿不完的球</h3>
+                <p class="story-content">
+                    為了讓兩個遊戲不互相干擾，我們突發奇想在教室中間架了一個大布幕！<br>
+                    本來還想做成鬼屋的，但弄到一半就累到放棄了🤣（真的太累啦！）。<br>
+                    當天最好笑的是乒乓球那組，球一直亂飛，同學一直在地上撿球，根本來不及招呼客人！<br>
+                    雖然很累，但這些「撿球」的畫面，現在想起來還是覺得很好笑。
+                </p>
+                <div class="story-footer">2026/02/05</div>
+            </div>
+
+            <!-- 309 故事 (匿名) -->
+            <div class="story-card">
+                <div class="story-header">
+                    <span class="story-author">資深老師回憶</span>
+                    <span class="story-tag">叫賣傳說</span>
+                </div>
+                <h3 class="story-title">這裡不是漁港，這裡是學校！</h3>
+                <p class="story-content">
+                    還記得去年二樓大辦公室前的盛況嗎？<br>
+                    當時在賣福袋，拿著麥克風不停放送，那架勢簡直像在漁港「賣海鮮」一樣熱情！<br>
+                    但你別說，這招真的有效！排隊隊伍從來沒斷過，生意好到爆炸！<br>
+                    那種「熱鬧滾滾」的氣氛，就是園遊會最棒的回憶啊！
+                </p>
+                <div class="story-footer">2026/02/05</div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

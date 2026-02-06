@@ -1,214 +1,214 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>114學年度親職教育日 - 青溪國小</title>
-    <link rel="stylesheet" href="style.css?v=orange">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=final2">
 </head>
-
 <body>
 
-    <div class="app-wrap">
-        <div class="app-header">
-            <h1>114學年度親職教育日</h1>
-            <div class="school-tag">青溪國小園遊會服務平台</div>
+    <!-- 背景裝飾 -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+
+    <header class="hero-section">
+        <div class="hero-content">
+            <span class="badge">青溪國小</span>
+            <h1 class="main-title">114學年度<br>親職教育日</h1>
             
-            <!-- 倒數計時器 -->
-            <div id="countdown" class="countdown-box">
-                距離活動還有 <span id="days">00</span> 天 <span id="hours">00</span> 時
+            <!-- 倒數計時 -->
+            <div class="countdown-container">
+                <div class="time-block">
+                    <span id="days" class="number">00</span>
+                    <span class="label">天</span>
+                </div>
+                <div class="separator">:</div>
+                <div class="time-block">
+                    <span id="hours" class="number">00</span>
+                    <span class="label">時</span>
+                </div>
             </div>
         </div>
+    </header>
 
-        <!-- 跑馬燈公告 -->
-        <div class="marquee-container">
-            <div class="marquee-content">
-                📢 歡迎蒞臨 114 學年度親職教育日！全校班級精心準備各式攤位，09:00 正式開賣，歡迎大家踴躍參與！祝大家玩得開心！
+    <!-- 跑馬燈 -->
+    <div class="marquee-strip">
+        <p>📢 歡迎蒞臨無限城嘉年華！全校攤位 09:00 準時開賣！請自備環保餐具，愛地球做環保！祝大家玩得開心！</p>
+    </div>
+
+    <!-- 快捷導航 (App Icon 風格) -->
+    <nav class="quick-nav">
+        <a href="stories.html" class="nav-item">
+            <div class="icon-circle story-icon">🏰</div>
+            <span>故事牆</span>
+        </a>
+        <a href="#map-modal" class="nav-item" onclick="openMap()">
+            <div class="icon-circle map-icon">🗺️</div>
+            <span>校園地圖</span>
+        </a>
+        <a href="https://docs.google.com/forms/d/18_ZxA7pB8pmwYJaLqvHoOnVKms5iUGSCtp5RFBCoK10/preview" target="_blank" class="nav-item">
+            <div class="icon-circle form-icon">📝</div>
+            <span>整潔回饋</span>
+        </a>
+    </nav>
+
+    <main class="container">
+        <!-- 活動時程 -->
+        <section class="section-card timeline-card">
+            <h2 class="section-title">📅 活動日程 (3/28)</h2>
+            <div class="timeline-row">
+                <div class="t-item">
+                    <span class="t-time">08:00</span>
+                    <span class="t-desc">社團表演</span>
+                </div>
+                <div class="t-line"></div>
+                <div class="t-item">
+                    <span class="t-time">09:00</span>
+                    <span class="t-desc">攤位開賣</span>
+                </div>
+                <div class="t-line"></div>
+                <div class="t-item">
+                    <span class="t-time">11:20</span>
+                    <span class="t-desc">活動結束</span>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div class="nav-grid">
-            <a href="https://docs.google.com/forms/d/18_ZxA7pB8pmwYJaLqvHoOnVKms5iUGSCtp5RFBCoK10/preview"
-                target="_blank" class="nav-card red-border">
-                <span class="nav-icon">🚨</span>
-                <span class="nav-label">整潔回饋</span>
-            </a>
-            <a href="#mapSection" class="nav-card green-border">
-                <span class="nav-icon">🗺️</span>
-                <span class="nav-label">查看地圖</span>
-            </a>
-        </div>
-
-        <div id="mapSection" class="content-card" style="text-align: center;">
-            <div class="card-title">🗺️ 校園地圖</div>
-            <img src="picture.jpg" alt="校園地圖" style="width: 100%; border-radius: 10px; margin-bottom: 10px;">
-            <a href="https://www.csps.tyc.edu.tw/modules/tadnews/page.php?nsn=29" target="_blank" style="color: var(--green); text-decoration: none; font-weight: bold;">開啟高清版地圖 ↗</a>
-        </div>
-
-        <div class="content-card">
-            <div class="card-title">📅 活動時程 (115/3/28)</div>
-            <ul class="timeline">
-                <li><span class="t-time">08:00</span> <span class="t-info">社團表演與開幕</span></li>
-                <li><span class="t-time">09:00</span> <span class="t-info">園遊會攤位開始</span></li>
-                <li><span class="t-time">11:20</span> <span class="t-info">整理環境與放學</span></li>
-            </ul>
-            <div class="vacation-tag">📌 115/4/2 (四) 為本次活動補假</div>
-        </div>
-
-        <div class="content-card">
-            <div class="card-title">🔍 攤位快速查詢</div>
+        <!-- 攤位搜尋 -->
+        <section class="booth-section">
+            <h2 class="section-title">🔍 探索攤位</h2>
             
-            <!-- 分類篩選按鈕 -->
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">全部</button>
-                <button class="filter-btn" data-filter="food">😋 食物</button>
-                <button class="filter-btn" data-filter="goods">🛍️ 物品</button>
-                <button class="filter-btn" data-filter="game">🎮 遊戲</button>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="搜尋班級 (如 506) 或食物...">
+                <button class="search-btn">Go</button>
             </div>
 
-            <input type="text" id="searchInput" class="search-bar" placeholder="輸入班級(如502)或關鍵字(如餅乾)...">
-
-            <div class="table-scroll">
-                <table id="boothTable">
-                    <thead>
-                        <tr>
-                            <th>班級</th>
-                            <th>攤位名稱</th>
-                            <th>類型</th>
-                            <th>位置</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>101</td>
-                            <td>一起來逛街</td>
-                            <td><span class="tag tag-goods">物品</span></td>
-                            <td>和平樓 1F</td>
-                        </tr>
-                        <tr>
-                            <td>102</td>
-                            <td>102 號寶庫</td>
-                            <td><span class="tag tag-goods">物品</span></td>
-                            <td>和平樓 1F</td>
-                        </tr>
-                        <tr>
-                            <td>103</td>
-                            <td>蛋好物</td>
-                            <td><span class="tag tag-goods">物品</span></td>
-                            <td>和平樓 1F</td>
-                        </tr>
-                        <tr>
-                            <td>108</td>
-                            <td>108快樂小舖</td>
-                            <td><span class="tag tag-goods">物品</span></td>
-                            <td>和平樓 1F</td>
-                        </tr>
-                        <tr>
-                            <td>201</td>
-                            <td>幸福柑仔店</td>
-                            <td><span class="tag tag-goods">物品</span></td>
-                            <td>和平樓 2F</td>
-                        </tr>
-                        <tr>
-                            <td>205</td>
-                            <td>二五歡樂市集</td>
-                            <td><span class="tag tag-goods">物品</span></td>
-                            <td>和平樓 2F</td>
-                        </tr>
-                        <tr>
-                            <td>206</td>
-                            <td>206尋寶店</td>
-                            <td><span class="tag tag-goods">物品</span></td>
-                            <td>和平樓 2F</td>
-                        </tr>
-                        <tr>
-                            <td>302</td>
-                            <td>302奇幻屋</td>
-                            <td><span class="tag tag-goods">物品</span></td>
-                            <td>和平樓 3F</td>
-                        </tr>
-                        <tr>
-                            <td>303</td>
-                            <td>歡樂33</td>
-                            <td><span class="tag tag-food">食物</span></td>
-                            <td>和平樓 3F</td>
-                        </tr>
-                        <tr>
-                            <td>304</td>
-                            <td>304攤位</td>
-                            <td><span class="tag tag-food">食物</span></td>
-                            <td>和平樓 3F</td>
-                        </tr>
-                        <tr>
-                            <td>305</td>
-                            <td>五告吼呷</td>
-                            <td><span class="tag tag-food">食物</span></td>
-                            <td>和平樓 3F</td>
-                        </tr>
-                        <tr>
-                            <td>307</td>
-                            <td>賣鞋子</td>
-                            <td><span class="tag tag-goods">物品</span></td>
-                            <td>和平樓 3F</td>
-                        </tr>
-                        <tr>
-                            <td>308</td>
-                            <td>308商店屋</td>
-                            <td><span class="tag tag-goods">物品</span></td>
-                            <td>和平樓 3F</td>
-                        </tr>
-                        <tr>
-                            <td>309</td>
-                            <td>三九幸福</td>
-                            <td><span class="tag tag-game">遊戲</span></td>
-                            <td>和平樓 3F</td>
-                        </tr>
-                        <tr>
-                            <td>407</td>
-                            <td>不平凡的407</td>
-                            <td><span class="tag tag-goods">物品</span></td>
-                            <td>和平樓 4F</td>
-                        </tr>
-                        <tr>
-                            <td>408</td>
-                            <td>408無限城</td>
-                            <td><span class="tag tag-food">食物</span></td>
-                            <td>和平樓 4F</td>
-                        </tr>
-                        <tr>
-                            <td>409</td>
-                            <td>歡樂選購 409</td>
-                            <td><span class="tag tag-goods">物品</span></td>
-                            <td>和平樓 4F</td>
-                        </tr>
-                        <tr>
-                            <td>502</td>
-                            <td>吐司市集</td>
-                            <td><span class="tag tag-game">遊戲</span></td>
-                            <td>和平樓 5F</td>
-                        </tr>
-                        <tr>
-                            <td>506</td>
-                            <td>讚不絕口666</td>
-                            <td><span class="tag tag-food">食物</span></td>
-                            <td>和平樓 5F</td>
-                        </tr>
-                        <tr>
-                            <td>508</td>
-                            <td>奇雞街坊</td>
-                            <td><span class="tag tag-goods">物品</span></td>
-                            <td>和平樓 5F</td>
-                        </tr>
-                </table>
+            <div class="filter-pills">
+                <button class="pill active" data-filter="all">全部</button>
+                <button class="pill" data-filter="food">😋 美食</button>
+                <button class="pill" data-filter="goods">🛍️ 好物</button>
+                <button class="pill" data-filter="game">🎮 遊戲</button>
             </div>
+
+            <!-- 瀑布流卡片 -->
+            <div class="booth-grid" id="boothGrid">
+                <!-- 由 JS 動態生成 -->
+            </div>
+        </section>
+    </main>
+
+    <!-- 地圖模態視窗 (Modal) -->
+    <div id="mapModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeMap()">&times;</span>
+            <h3>🗺️ 校園地圖</h3>
+            <img src="picture.jpg" alt="Map" style="width:100%; border-radius:10px;">
+            <a href="https://www.csps.tyc.edu.tw/modules/tadnews/page.php?nsn=29" target="_blank" class="full-map-btn">查看高清大圖</a>
         </div>
     </div>
 
-    <!-- 回到頂部按鈕 -->
-    <button id="backToTop" class="back-to-top" title="回到頂部">⬆</button>
+    <!-- 底部 -->
+    <footer>
+        <p>© 2026 青溪國小親職教育日</p>
+    </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // 資料庫 (從原本的 HTML 轉換而來)
+        const booths = [
+            { cls: "101", name: "一起來逛街", type: "goods", loc: "和平樓 1F" },
+            { cls: "102", name: "102 號寶庫", type: "goods", loc: "和平樓 1F" },
+            { cls: "103", name: "蛋好物", type: "goods", loc: "和平樓 1F" },
+            { cls: "108", name: "108快樂小舖", type: "goods", loc: "和平樓 1F" },
+            { cls: "201", name: "幸福柑仔店", type: "goods", loc: "和平樓 2F" },
+            { cls: "205", name: "二五歡樂市集", type: "goods", loc: "和平樓 2F" },
+            { cls: "206", name: "206尋寶店", type: "goods", loc: "和平樓 2F" },
+            { cls: "302", name: "302奇幻屋", type: "goods", loc: "和平樓 3F" },
+            { cls: "303", name: "歡樂33", type: "food", loc: "和平樓 3F" },
+            { cls: "304", name: "304攤位", type: "food", loc: "和平樓 3F" },
+            { cls: "305", name: "五告吼呷", type: "food", loc: "和平樓 3F" },
+            { cls: "307", name: "賣鞋子", type: "goods", loc: "和平樓 3F" },
+            { cls: "308", name: "308商店屋", type: "goods", loc: "和平樓 3F" },
+            { cls: "309", name: "三九幸福", type: "game", loc: "和平樓 3F" },
+            { cls: "407", name: "不平凡的407", type: "goods", loc: "和平樓 4F" },
+            { cls: "408", name: "408無限城", type: "food", loc: "和平樓 4F" },
+            { cls: "409", name: "歡樂選購 409", type: "goods", loc: "和平樓 4F" },
+            { cls: "502", name: "吐司市集", type: "game", loc: "和平樓 5F" },
+            { cls: "506", name: "讚不絕口666", type: "food", loc: "和平樓 5F" },
+            { cls: "508", name: "奇雞街坊", type: "goods", loc: "和平樓 5F" }
+        ];
+
+        const grid = document.getElementById('boothGrid');
+        const searchInput = document.getElementById('searchInput');
+        const pills = document.querySelectorAll('.pill');
+
+        function renderBooths(filterType = 'all', searchText = '') {
+            grid.innerHTML = '';
+            
+            const filtered = booths.filter(b => {
+                const matchType = filterType === 'all' || b.type === filterType;
+                const matchText = b.name.includes(searchText) || b.cls.includes(searchText);
+                return matchType && matchText;
+            });
+
+            if(filtered.length === 0) {
+                grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; color:#999; padding:20px;">找不到相關攤位 🥲</div>';
+                return;
+            }
+
+            filtered.forEach(b => {
+                let typeLabel = b.type === 'food' ? '美食' : (b.type === 'game' ? '遊戲' : '好物');
+                let typeClass = `type-${b.type}`;
+                
+                const card = document.createElement('div');
+                card.className = `booth-card ${typeClass}`;
+                card.innerHTML = `
+                    <div class="booth-header">
+                        <span class="booth-class">${b.cls}</span>
+                        <span class="booth-tag">${typeLabel}</span>
+                    </div>
+                    <h3>${b.name}</h3>
+                    <p class="booth-loc">📍 ${b.loc}</p>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Init
+        renderBooths();
+
+        // Search Listener
+        searchInput.addEventListener('input', (e) => {
+            const activePill = document.querySelector('.pill.active');
+            renderBooths(activePill.dataset.filter, e.target.value);
+        });
+
+        // Filter Listener
+        pills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                pills.forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                renderBooths(pill.dataset.filter, searchInput.value);
+            });
+        });
+
+        // Countdown Logic (Same as before)
+        const targetDate = new Date("2026-03-28T09:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            if (distance > 0) {
+                document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+                document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            } else {
+                document.getElementById("days").innerText = "00";
+            }
+        }, 1000);
+
+        // Modal Logic
+        function openMap() { document.getElementById('mapModal').style.display = 'flex'; }
+        function closeMap() { document.getElementById('mapModal').style.display = 'none'; }
+    </script>
 </body>
-
 </html>

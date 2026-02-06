@@ -39,10 +39,10 @@ body {
 .badge {
     background: #E0F7FA;
     color: #006064;
-    padding: 8px 20px;
+    padding: 8px 20px; /* Bigger padding */
     border-radius: 30px;
-    font-size: 1.2rem;
-    font-weight: 900;
+    font-size: 1.2rem; /* Bigger font */
+    font-weight: 900; /* Bolder */
     display: inline-block;
     margin-bottom: 15px;
     letter-spacing: 2px;
@@ -53,7 +53,8 @@ body {
     font-size: 3rem;
     line-height: 1.2;
     margin: 10px 0 20px;
-    color: #FF6B6B;
+    color: #FF6B6B; /* Fallback color */
+    /* Remove complex gradient text for better compatibility */
     text-shadow: 2px 2px 0px white, 4px 4px 10px rgba(0,0,0,0.1);
 }
 

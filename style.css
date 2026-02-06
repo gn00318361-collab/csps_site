@@ -29,52 +29,55 @@ body {
 /* Hero Section */
 .hero-section {
     text-align: center;
-    padding: 60px 20px 40px;
+    padding: 30px 20px 20px; /* Reduced padding */
     background: white;
-    border-radius: 0 0 40px 40px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    margin-bottom: 30px;
+    border-radius: 0 0 30px 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
 }
 
 .badge {
     background: #E0F7FA;
     color: #006064;
-    padding: 8px 20px;
-    border-radius: 30px;
-    font-size: 1.2rem;
-    font-weight: 900;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
     display: inline-block;
-    margin-bottom: 15px;
-    letter-spacing: 2px;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
 }
 
 .main-title {
     font-family: 'Fredoka One', 'Noto Sans TC', sans-serif;
-    font-size: 3rem;
+    font-size: 2.2rem; /* Smaller title */
     line-height: 1.2;
-    margin: 10px 0 20px;
+    margin: 5px 0 10px;
     color: #FF6B6B;
     text-shadow: 2px 2px 0px white, 4px 4px 10px rgba(0,0,0,0.1);
 }
 
 .countdown-container {
-    display: flex;
-    justify-content: center;
+    display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
+    background: #FFF3E0; /* Light orange pill */
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin-top: 5px;
+    border: 1px solid #FFE0B2;
 }
 
 .time-block {
-    background: var(--dark);
-    color: white;
-    padding: 10px 15px;
-    border-radius: 12px;
-    min-width: 60px;
+    background: transparent;
+    color: #E65100;
+    padding: 0;
+    min-width: auto;
 }
 
-.time-block .number { font-size: 1.5rem; font-weight: bold; display: block; }
-.time-block .label { font-size: 0.7rem; opacity: 0.8; }
-.separator { font-size: 2rem; color: var(--dark); font-weight: bold; padding-bottom: 10px; }
+.time-block .number { font-size: 1rem; font-weight: bold; display: inline; }
+.time-block .label { font-size: 0.8rem; opacity: 0.8; display: inline; margin-left: 2px; }
+.separator { font-size: 1rem; color: #E65100; padding: 0 2px; font-weight: normal; }
 
 /* Marquee */
 .marquee-strip {
@@ -99,10 +102,9 @@ body {
 .quick-nav {
     display: flex;
     justify-content: center;
-    gap: 25px;
-    margin: -30px 0 30px; /* Pull up to overlap hero slightly if wanted, or just margin */
-    margin-top: 20px;
-    padding: 0 20px;
+    gap: 15px;
+    margin: 0 0 20px;
+    padding: 0 15px;
 }
 
 .nav-item {
@@ -117,15 +119,15 @@ body {
 .nav-item:hover { transform: translateY(-5px); }
 
 .icon-circle {
-    width: 60px;
-    height: 60px;
+    width: 50px; /* Smaller icons */
+    height: 50px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
-    margin-bottom: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
     background: white;
 }
 
@@ -281,3 +283,9 @@ body {
 .full-map-btn { display: inline-block; margin-top: 15px; padding: 10px 20px; background: var(--secondary); color: white; border-radius: 10px; text-decoration: none; font-weight: bold; }
 
 footer { text-align: center; color: #999; padding: 20px; font-size: 0.8rem; }
+
+/* Event Day Mode (3/28) */
+body.event-day-mode .countdown-container { display: none !important; }
+body.event-day-mode .hero-section { padding: 20px 20px 10px; min-height: auto; margin-bottom: 15px; }
+body.event-day-mode .main-title { font-size: 2rem; margin: 5px 0 10px; }
+body.event-day-mode .badge { font-size: 0.9rem; padding: 4px 12px; margin-bottom: 5px; }

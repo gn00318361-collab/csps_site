@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>114學年度親職教育日 - 青溪國小</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=final2">
+    <link rel="stylesheet" href="style.css?v=final3">
 </head>
 <body>
 
@@ -36,7 +36,7 @@
             <span class="badge">青溪國小</span>
             <h1 class="main-title">114學年度<br>親職教育日</h1>
             
-            <!-- 倒數計時 -->
+            <!-- 倒數計時 (Small Pill Style) -->
             <div class="countdown-container">
                 <div class="time-block">
                     <span id="days" class="number">00</span>
@@ -133,28 +133,39 @@
     </footer>
 
     <script>
-        // 資料庫 (從原本的 HTML 轉換而來)
+        // 資料庫
         const booths = [
-            { cls: "101", name: "一起來逛街", type: "goods", loc: "和平樓 1F" },
-            { cls: "102", name: "102 號寶庫", type: "goods", loc: "和平樓 1F" },
-            { cls: "103", name: "蛋好物", type: "goods", loc: "和平樓 1F" },
-            { cls: "108", name: "108快樂小舖", type: "goods", loc: "和平樓 1F" },
-            { cls: "201", name: "幸福柑仔店", type: "goods", loc: "和平樓 2F" },
-            { cls: "205", name: "二五歡樂市集", type: "goods", loc: "和平樓 2F" },
-            { cls: "206", name: "206尋寶店", type: "goods", loc: "和平樓 2F" },
-            { cls: "302", name: "302奇幻屋", type: "goods", loc: "和平樓 3F" },
-            { cls: "303", name: "歡樂33", type: "food", loc: "和平樓 3F" },
-            { cls: "304", name: "304攤位", type: "food", loc: "和平樓 3F" },
-            { cls: "305", name: "五告吼呷", type: "food", loc: "和平樓 3F" },
-            { cls: "307", name: "賣鞋子", type: "goods", loc: "和平樓 3F" },
-            { cls: "308", name: "308商店屋", type: "goods", loc: "和平樓 3F" },
-            { cls: "309", name: "三九幸福", type: "game", loc: "和平樓 3F" },
-            { cls: "407", name: "不平凡的407", type: "goods", loc: "和平樓 4F" },
-            { cls: "408", name: "408無限城", type: "food", loc: "和平樓 4F" },
-            { cls: "409", name: "歡樂選購 409", type: "goods", loc: "和平樓 4F" },
-            { cls: "502", name: "吐司市集", type: "game", loc: "和平樓 5F" },
-            { cls: "506", name: "讚不絕口666", type: "food", loc: "和平樓 5F" },
-            { cls: "508", name: "奇雞街坊", type: "goods", loc: "和平樓 5F" }
+            { cls: "101", name: "一起來逛街", type: "goods", loc: "和平樓 1F", desc: "市集" },
+            { cls: "102", name: "102號寶庫", type: "goods", loc: "和平樓 1F", desc: "餅乾、水果、文具" },
+            { cls: "103", name: "蛋好物", type: "goods", loc: "和平樓 1F", desc: "手作、二手生活用品、書、玩具、文具" },
+            { cls: "105", name: "五彩繽紛小市集", type: "food", loc: "和平樓 1F", desc: "茶葉蛋、油飯、Q凍、雪Q餅、果汁、爆米花、文具、小公仔、夾娃娃機" },
+            { cls: "106", name: "一溜甜甜屋", type: "food", loc: "和平樓 1F", desc: "奶酪、餅乾、紅茶、奶茶、越南鳥蛋、珍珠奶茶、棉花糖餅乾串、蛋塔" },
+            { cls: "108", name: "108快樂小舖", type: "goods", loc: "和平樓 1F", desc: "全新及九成新的生活物品" },
+            { cls: "201", name: "幸福柑仔店", type: "goods", loc: "和平樓 2F", desc: "文具驚喜包、二手小物、娃娃、健康餅乾驚喜包、手工編織小物" },
+            { cls: "205", name: "二五歡樂市集", type: "goods", loc: "和平樓 2F", desc: "圖書、生活用品、文具" },
+            { cls: "206", name: "206尋寶店", type: "goods", loc: "和平樓 2F", desc: "二手物品販售" },
+            { cls: "207", name: "寶藏屋", type: "goods", loc: "和平樓 2F", desc: "二手玩具、玩偶、書籍" },
+            { cls: "302", name: "302奇幻屋", type: "goods", loc: "和平樓 3F", desc: "文具、生活雜貨" },
+            { cls: "303", name: "歡樂33", type: "food", loc: "和平樓 3F", desc: "一口小香腸、彈珠汽水、茶葉蛋、草莓煉乳、玩偶、文具" },
+            { cls: "304", name: "304攤位", type: "food", loc: "和平樓 3F", desc: "滷味、茶葉蛋、綜合果汁、布丁、炒米粉、馬林糖、珍珠奶茶、古早味蛋糕" },
+            { cls: "305", name: "五告吼呷", type: "food", loc: "和平樓 3F", desc: "糖葫蘆、香菇、蛋塔、遊戲（品項暫定）" },
+            { cls: "308", name: "308商店屋", type: "goods", loc: "和平樓 3F", desc: "二手娃娃、吊飾、卡片、茶葉蛋、冰棒、小飯糰、冬瓜茶" },
+            { cls: "309", name: "三九幸福小屋", type: "game", loc: "和平樓 3F", desc: "射擊遊戲" },
+            { cls: "405", name: "405夜市", type: "goods", loc: "和平樓 4F", desc: "二手商品" },
+            { cls: "406", name: "快來六班找好康", type: "goods", loc: "和平樓 4F", desc: "食品、飲料、小益智遊戲、手做商品等" },
+            { cls: "407", name: "不平凡的407", type: "goods", loc: "和平樓 4F", desc: "雪Q餅、彈珠汽水、DIY小吊飾、玩偶、文具、咕卡、積木、二手書" },
+            { cls: "408", name: "408無限城", type: "food", loc: "和平樓 4F", desc: "扭蛋、娃娃、桌遊、餅乾、滷味、飲料、包子、套圈圈、彈珠台" },
+            { cls: "409", name: "歡樂選購409", type: "goods", loc: "和平樓 4F", desc: "文具用品、卡牌、日用品" },
+            { cls: "502", name: "吐司市集", type: "game", loc: "和平樓 5F", desc: "飲料、娃娃、夾娃娃、乒乓球" },
+            { cls: "504", name: "百四可樂", type: "goods", loc: "和平樓 5F", desc: "吃的、玩的、用的通通有" },
+            { cls: "505", name: "無所不能", type: "food", loc: "和平樓 5F", desc: "飲料、茶葉蛋及益智遊戲" },
+            { cls: "506", name: "讚不絕口666", type: "food", loc: "和平樓 5F", desc: "餅乾、糖果、零食、飲料、二手物品" },
+            { cls: "507", name: "宜居7息地", type: "game", loc: "和平樓 5F", desc: "套圈圈、投乒乓球、二手商品、小飾品、娃娃、零嘴、飲料" },
+            { cls: "508", name: "奇雞街坊", type: "goods", loc: "和平樓 5F", desc: "吊飾、娃娃、可愛物品、文具、玩具、書" },
+            { cls: "510", name: "十物招領", type: "food", loc: "和平樓 5F", desc: "小型市集，多種不同攤販供顧客選擇" },
+            { cls: "603", name: "星光影城＆挖寶小市集", type: "goods", loc: "和平樓 6F", desc: "餅乾、飲料、卡通影片欣賞、跳蚤市場" },
+            { cls: "608", name: "八方來財", type: "food", loc: "和平樓 6F", desc: "餅乾、糖果、飲料、益智遊戲：瑞利球" },
+            { cls: "610", name: "魔法販賣部", type: "food", loc: "和平樓 6F", desc: "果汁、水果、手工餅乾、益智遊戲" }
         ];
 
         const grid = document.getElementById('boothGrid');
@@ -166,7 +177,7 @@
             
             const filtered = booths.filter(b => {
                 const matchType = filterType === 'all' || b.type === filterType;
-                const matchText = b.name.includes(searchText) || b.cls.includes(searchText);
+                const matchText = b.name.includes(searchText) || b.cls.includes(searchText) || (b.desc && b.desc.includes(searchText));
                 return matchType && matchText;
             });
 
@@ -187,6 +198,7 @@
                         <span class="booth-tag">${typeLabel}</span>
                     </div>
                     <h3>${b.name}</h3>
+                    ${b.desc ? `<p class="booth-desc">${b.desc}</p>` : ''}
                     <p class="booth-loc">📍 ${b.loc}</p>
                 `;
                 grid.appendChild(card);
@@ -237,11 +249,11 @@
         function openMap() { document.getElementById('mapModal').style.display = 'flex'; }
         function closeMap() { document.getElementById('mapModal').style.display = 'none'; }
 
-        // Parallax Effect
+        // Parallax Effect (Background)
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
-            document.querySelectorAll('.parallax-layer').forEach((el, index) => {
-                const speed = (index + 1) * 0.15;
+            document.querySelectorAll('.bg-shape').forEach((el, index) => {
+                const speed = (index + 1) * 0.1;
                 el.style.transform = `translateY(${scrolled * speed}px)`;
             });
         });

@@ -3,91 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>無限城故事牆 - 青溪國小園遊會</title>
-    <link rel="stylesheet" href="style.css?v=story">
+    <title>無限城故事牆</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Fredoka+One&display=swap" rel="stylesheet">
     <style>
-        body { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); }
-        .hero { text-align: center; padding: 40px 20px; background: white; border-radius: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .hero h2 { color: #e65100; margin-bottom: 10px; font-size: 1.8rem; }
-        .hero p { color: #555; line-height: 1.6; }
-        .cta-btn { display: inline-block; background: #fb8c00; color: white; padding: 10px 25px; border-radius: 50px; text-decoration: none; margin-top: 15px; font-weight: bold; transition: transform 0.2s; }
-        .cta-btn:hover { transform: scale(1.05); background: #f57c00; }
+        body { margin: 0; font-family: 'Noto Serif TC', serif; background: #fffdf5; color: #444; overflow-x: hidden; }
         
-        .story-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 10px; }
-        .story-card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: transform 0.3s; border-top: 5px solid #ffcc80; }
-        .story-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
-        .story-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-        .story-author { font-weight: bold; color: #d84315; font-size: 0.9rem; }
-        .story-tag { background: #ffe0b2; color: #e65100; padding: 3px 8px; border-radius: 10px; font-size: 0.8rem; }
-        .story-title { font-size: 1.2rem; color: #333; margin-bottom: 10px; }
-        .story-content { color: #666; font-size: 0.95rem; line-height: 1.6; }
-        .story-footer { margin-top: 15px; text-align: right; color: #999; font-size: 0.8rem; }
+        /* Navigation */
+        .nav-back { position: fixed; top: 20px; left: 20px; z-index: 100; text-decoration: none; background: rgba(255,255,255,0.8); padding: 8px 15px; border-radius: 20px; font-weight: bold; color: #d84315; box-shadow: 0 2px 10px rgba(0,0,0,0.1); backdrop-filter: blur(5px); }
+
+        /* Sections */
+        section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; padding: 40px 20px; box-sizing: border-box; text-align: center; }
         
-        .nav-back { display: block; text-align: center; margin: 20px; color: #e65100; text-decoration: none; font-weight: bold; }
+        h1 { font-family: 'Fredoka One', cursive; font-size: 3rem; color: #d84315; margin-bottom: 20px; }
+        h2 { font-size: 2rem; margin-bottom: 15px; color: #333; }
+        p { font-size: 1.1rem; line-height: 1.8; max-width: 600px; margin: 0 auto 20px; }
+        .author { font-style: italic; color: #888; font-size: 0.9rem; margin-top: 10px; display: block; }
+
+        /* Floating Elements */
+        .float-item { position: absolute; font-size: 4rem; opacity: 0.6; transition: transform 0.1s linear; will-change: transform; z-index: -1; }
+        
+        /* Specific Section Styles */
+        .s1 { background: linear-gradient(180deg, #fff3e0 0%, #ffe0b2 100%); }
+        .s2 { background: #e3f2fd; }
+        .s3 { background: #e8f5e9; }
+        .s4 { background: #f3e5f5; }
+
+        .story-box { background: rgba(255,255,255,0.9); padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 500px; position: relative; }
+        .quote-icon { font-size: 3rem; position: absolute; top: -20px; left: 20px; color: #ffcc80; }
+
+        .cta-btn { display: inline-block; background: #fb8c00; color: white; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; font-family: sans-serif; margin-top: 30px; box-shadow: 0 5px 15px rgba(251, 140, 0, 0.3); transition: transform 0.2s; }
+        .cta-btn:hover { transform: scale(1.05); }
+
+        .scroll-hint { position: absolute; bottom: 30px; animation: bounce 2s infinite; opacity: 0.5; font-size: 0.9rem; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
     </style>
 </head>
 <body>
 
-    <div class="app-wrap">
-        <a href="index.html" class="nav-back">← 回到園遊會首頁</a>
+    <a href="index.html" class="nav-back">← 回首頁</a>
 
-        <div class="hero">
-            <h2>🏰 無限城的故事牆</h2>
-            <p>園遊會不只是買賣，更是我們共同的回憶。<br>每一個攤位背後，都有一個溫暖的故事。</p>
-            <a href="https://forms.gle/X9WpZLDoxUyx4BT58" target="_blank" class="cta-btn">✍️ 投稿你的故事</a>
+    <!-- Intro Section -->
+    <section class="s1">
+        <div class="float-item" style="top: 10%; right: 10%; font-size: 6rem;">🏰</div>
+        <div class="float-item" style="top: 60%; left: 5%;">✨</div>
+        
+        <h1>無限城<br>故事牆</h1>
+        <p>每一個攤位背後，都有一個溫暖的故事。<br>讓我們一起走進這些回憶...</p>
+        <div class="scroll-hint">往下捲動閱讀</div>
+    </section>
+
+    <!-- Cleaner Story -->
+    <section class="s2">
+        <div class="float-item" style="top: 20%; left: 10%;">🧹</div>
+        <div class="float-item" style="bottom: 10%; right: 10%;">❤️</div>
+        
+        <div class="story-box">
+            <span class="quote-icon">❝</span>
+            <h2>記得 300 個名字</h2>
+            <p>曾經有一位小學清潔員，因為工作熟練，省下的時間都用來跟學生互動，甚至記得全校300多個孩子的名字。</p>
+            <p>這讓我們知道，服務不只是工作，更是建立「連結」。希望我們的園遊會，也能充滿這樣溫暖的連結。</p>
+            <span class="author">— 站長分享</span>
         </div>
+    </section>
 
-        <div class="story-grid">
-            
-            <!-- 引言故事 -->
-            <div class="story-card" style="border-top-color: #d84315;">
-                <div class="story-header">
-                    <span class="story-author">🌟 站長分享</span>
-                    <span class="story-tag">服務精神</span>
-                </div>
-                <h3 class="story-title">記得300個名字的清潔員</h3>
-                <p class="story-content">
-                    曾經有一家清潔公司的業績不好，於是辦了一個「清潔員故事大賽」。<br>
-                    冠軍是一位小學清潔員，她因為工作熟練，省下的時間都用來跟學生互動，甚至記得全校300多個孩子的名字。<br>
-                    這讓我們知道，服務不只是掃地，更是建立「連結」。希望我們的園遊會，也能充滿這樣溫暖的連結。
-                </p>
-                <div class="story-footer">2026/02/05</div>
-            </div>
-
-            <!-- 510 故事 (匿名) -->
-            <div class="story-card">
-                <div class="story-header">
-                    <span class="story-author">某班導師分享</span>
-                    <span class="story-tag">幕後花絮</span>
-                </div>
-                <h3 class="story-title">布幕後的秘密與撿不完的球</h3>
-                <p class="story-content">
-                    為了讓兩個遊戲不互相干擾，我們突發奇想在教室中間架了一個大布幕！<br>
-                    本來還想做成鬼屋的，但弄到一半就累到放棄了🤣（真的太累啦！）。<br>
-                    當天最好笑的是乒乓球那組，球一直亂飛，同學一直在地上撿球，根本來不及招呼客人！<br>
-                    雖然很累，但這些「撿球」的畫面，現在想起來還是覺得很好笑。
-                </p>
-                <div class="story-footer">2026/02/05</div>
-            </div>
-
-            <!-- 309 故事 (匿名) -->
-            <div class="story-card">
-                <div class="story-header">
-                    <span class="story-author">資深老師回憶</span>
-                    <span class="story-tag">叫賣傳說</span>
-                </div>
-                <h3 class="story-title">這裡不是漁港，這裡是學校！</h3>
-                <p class="story-content">
-                    還記得去年二樓大辦公室前的盛況嗎？<br>
-                    當時在賣福袋，拿著麥克風不停放送，那架勢簡直像在漁港「賣海鮮」一樣熱情！<br>
-                    但你別說，這招真的有效！排隊隊伍從來沒斷過，生意好到爆炸！<br>
-                    那種「熱鬧滾滾」的氣氛，就是園遊會最棒的回憶啊！
-                </p>
-                <div class="story-footer">2026/02/05</div>
-            </div>
-
+    <!-- 510 Story -->
+    <section class="s3">
+        <div class="float-item" style="top: 15%; right: 5%;">🎾</div>
+        <div class="float-item" style="bottom: 20%; left: 10%;">🤣</div>
+        
+        <div class="story-box">
+            <span class="quote-icon">❝</span>
+            <h2>撿不完的球</h2>
+            <p>「為了讓遊戲不互相干擾，我們突發奇想在教室中間架了大布幕！本來還想做鬼屋，結果累到放棄...」</p>
+            <p>「當天最好笑的是乒乓球一直亂飛，同學一直在地上撿球，根本來不及招呼客人！雖然很累，但現在想起來還是覺得很好笑。」</p>
+            <span class="author">— 熱血導師的崩潰日常</span>
         </div>
-    </div>
+    </section>
+
+    <!-- 309 Story -->
+    <section class="s4">
+        <div class="float-item" style="top: 10%; left: 15%;">🎤</div>
+        <div class="float-item" style="bottom: 15%; right: 5%;">🐟</div>
+        
+        <div class="story-box">
+            <span class="quote-icon">❝</span>
+            <h2>這裡不是漁港！</h2>
+            <p>「還記得去年二樓的盛況嗎？拿著麥克風不停放送，那架勢簡直像在漁港『賣海鮮』一樣熱情！」</p>
+            <p>「結果這招真的有效！排隊隊伍從來沒斷過。那種『熱鬧滾滾』的氣氛，就是園遊會最棒的回憶啊！」</p>
+            <span class="author">— 校園傳說見證者</span>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="s1">
+        <div class="float-item" style="top: 20%; right: 20%;">💌</div>
+        <h2>你也有一段故事嗎？</h2>
+        <p>不論是備料的辛酸、還是當天的感動，<br>我們都想聽聽你的聲音。</p>
+        <a href="https://forms.gle/X9WpZLDoxUyx4BT58" target="_blank" class="cta-btn">✍️ 投稿你的故事</a>
+        <br><br>
+        <a href="index.html" style="color: #d84315; text-decoration: none; border-bottom: 1px dashed;">回到園遊會首頁</a>
+    </section>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            document.querySelectorAll('.float-item').forEach((el, index) => {
+                const speed = (index % 3 + 1) * 0.2;
+                // Alternate direction
+                const direction = index % 2 === 0 ? 1 : -1;
+                el.style.transform = `translateY(${scrolled * speed * direction}px)`;
+            });
+        });
+    </script>
 
 </body>
 </html>

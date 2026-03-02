@@ -253,7 +253,8 @@ body {
 .type-goods .booth-tag { background: #E3F2FD; color: #1565C0; }
 .type-game .booth-tag { background: #F3E5F5; color: #7B1FA2; }
 
-.booth-card h3 { margin: 0 0 10px 0; font-size: 1.1rem; color: var(--dark); }
+.booth-card h3 { margin: 0 0 6px 0; font-size: 1.1rem; color: var(--dark); }
+.booth-desc { margin: 0 0 8px 0; font-size: 0.8rem; color: #666; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .booth-loc { margin: 0; font-size: 0.85rem; color: #888; display: flex; align-items: center; gap: 5px; }
 
 /* Modal */

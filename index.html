@@ -1,319 +1,428 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>114學年度親職教育日 - 青溪國小</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=final3">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>114學年度親職教育日 園遊會評分</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft JhengHei",sans-serif;background:#f0f2f5;color:#333;min-height:100vh;padding-bottom:90px}
+
+  .header{color:#fff;padding:18px 16px 14px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+  .header.teacher-mode{background:linear-gradient(135deg,#4a90d9,#357abd)}
+  .header.admin-mode{background:linear-gradient(135deg,#e67e22,#d35400)}
+  .header h1{font-size:17px;font-weight:700}
+  .header .sub{font-size:12px;opacity:.85;margin-top:2px}
+
+  .container{max-width:560px;margin:0 auto;padding:14px}
+
+  .screen{display:none}
+  .screen.active{display:block}
+  .role-screen.active{display:flex;flex-direction:column;align-items:center;padding-top:30px}
+
+  .role-icon{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;color:#fff;margin-bottom:16px;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+  .role-title{font-size:20px;font-weight:700;margin-bottom:6px}
+  .role-desc{font-size:13px;color:#888;margin-bottom:24px;text-align:center;line-height:1.5}
+
+  .role-cards{display:flex;gap:12px;width:100%}
+  .role-card{flex:1;background:#fff;border:2px solid #ddd;border-radius:14px;padding:20px 12px;text-align:center;cursor:pointer;transition:all .2s}
+  .role-card:active{transform:scale(.97)}
+  .role-card .rc-icon{font-size:36px;margin-bottom:10px}
+  .role-card .rc-title{font-size:16px;font-weight:700;margin-bottom:4px}
+  .role-card .rc-desc{font-size:12px;color:#888;line-height:1.4}
+
+  .field-label{display:block;font-size:13px;font-weight:700;color:#555;margin-bottom:8px;width:100%}
+  .info-bar{background:#fff8e1;border-left:4px solid #f9a825;padding:10px 12px;border-radius:0 8px 8px 0;font-size:12px;color:#666;margin-bottom:14px;line-height:1.5}
+  .info-bar strong{color:#333}
+
+  .big-btn{width:100%;padding:15px;border:none;border-radius:12px;color:#fff;font-size:17px;font-weight:700;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.15);transition:opacity .2s;margin-top:4px}
+  .big-btn:disabled{opacity:.35;cursor:not-allowed}
+  .big-btn.blue{background:linear-gradient(135deg,#4a90d9,#357abd)}
+
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;margin-bottom:18px}
+  .g-btn{padding:12px 6px;border:2px solid #ddd;border-radius:10px;background:#fff;font-size:15px;font-weight:600;color:#555;cursor:pointer;text-align:center;transition:all .15s}
+  .g-btn.on{border-color:#4a90d9;background:#e8f0fe;color:#4a90d9}
+
+  .t-btn{display:block;width:100%;padding:13px 16px;margin-bottom:7px;border:2px solid #ddd;border-radius:10px;background:#fff;font-size:15px;color:#555;cursor:pointer;text-align:left;transition:all .15s}
+  .t-btn.on{border-color:#4a90d9;background:#e8f0fe;color:#4a90d9;font-weight:700}
+
+  .count-row{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+  .count-row label{font-size:13px;font-weight:600;color:#555}
+  .cnt-btn{width:36px;height:36px;border-radius:50%;border:2px solid #4a90d9;background:#fff;font-size:18px;font-weight:700;color:#4a90d9;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .cnt-val{font-size:22px;font-weight:700;color:#4a90d9;min-width:32px;text-align:center}
+
+  .class-tabs{display:flex;overflow-x:auto;gap:6px;padding:4px 0 12px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .class-tabs::-webkit-scrollbar{display:none}
+  .tab{flex-shrink:0;padding:8px 16px;border-radius:20px;border:2px solid #ddd;background:#fff;font-size:14px;font-weight:600;color:#888;cursor:pointer;transition:all .15s;position:relative}
+  .tab.on{border-color:#4a90d9;background:#4a90d9;color:#fff}
+  .tab.done::after{content:'✓';position:absolute;top:-4px;right:-4px;width:18px;height:18px;background:#27ae60;border-radius:50%;font-size:11px;color:#fff;display:flex;align-items:center;justify-content:center}
+
+  .score-card{background:#fff;border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 1px 6px rgba(0,0,0,.05)}
+  .score-card h3{font-size:16px;margin-bottom:14px;color:#333}
+
+  .row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f0f0f0}
+  .row:last-child{border-bottom:none}
+  .row-label{font-size:14px;font-weight:600;color:#444;flex-shrink:0;width:76px}
+  .star-group{display:flex;gap:3px}
+  .star{width:30px;height:30px;border-radius:8px;border:1.5px solid #ddd;background:#fff;font-size:13px;font-weight:700;color:#aaa;cursor:pointer;transition:all .12s;display:flex;align-items:center;justify-content:center}
+  .star.on{border-color:#4a90d9;background:#4a90d9;color:#fff}
+  .row-score{min-width:32px;text-align:right;font-size:18px;font-weight:700;color:#e67e22}
+
+  .total-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0 0;border-top:2px dashed #eee;margin-top:6px}
+  .total-label{font-size:15px;font-weight:700;color:#555}
+  .total-val{font-size:22px;font-weight:800;color:#e67e22}
+
+  .progress-text{text-align:center;font-size:13px;color:#999;margin-bottom:12px}
+
+  .bottom-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;padding:10px 16px;box-shadow:0 -2px 8px rgba(0,0,0,.08);display:flex;gap:10px;z-index:90;max-width:560px;margin:0 auto}
+  .b-btn{flex:1;padding:13px;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer}
+  .b-btn.sec{background:#f0f0f0;color:#666}
+  .b-btn.pri{background:linear-gradient(135deg,#27ae60,#219a52);color:#fff;box-shadow:0 3px 10px rgba(39,174,96,.25)}
+  .b-btn.pri:disabled{opacity:.35}
+
+  .result-top{text-align:center;margin-bottom:16px}
+  .result-top .chk{width:56px;height:56px;background:#27ae60;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:28px;color:#fff}
+
+  .res-card{background:#fff;border-radius:14px;padding:14px;margin-bottom:12px;box-shadow:0 1px 6px rgba(0,0,0,.05);overflow-x:auto}
+  .res-table{width:100%;border-collapse:collapse;font-size:13px;white-space:nowrap}
+  .res-table th{background:#f5f7fa;padding:8px 6px;text-align:center;font-weight:700;color:#555;border-bottom:2px solid #ddd}
+  .res-table td{padding:8px 6px;text-align:center;border-bottom:1px solid #eee}
+  .highlight{font-weight:700;color:#e67e22}
+  .rank-1{color:#e74c3c;font-weight:700}
+  .rank-2{color:#e67e22;font-weight:700}
+  .rank-3{color:#2ecc71;font-weight:700}
+
+  .act-btns{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+  .act-btn{padding:13px;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;text-align:center}
+  .act-btn.copy{background:#4a90d9;color:#fff}
+  .act-btn.line{background:#06C755;color:#fff}
+  .act-btn.reset{background:#f0f0f0;color:#666}
+  .act-btn.orange{background:#e67e22;color:#fff}
+
+  .admin-grade-bar{display:flex;gap:6px;overflow-x:auto;padding:4px 0 14px;scrollbar-width:none}
+  .admin-grade-bar::-webkit-scrollbar{display:none}
+  .ag-btn{flex-shrink:0;padding:10px 18px;border-radius:20px;border:2px solid #ddd;background:#fff;font-size:14px;font-weight:600;color:#888;cursor:pointer;transition:all .15s}
+  .ag-btn.on{border-color:#e67e22;background:#e67e22;color:#fff}
+
+  .teacher-tabs{display:flex;gap:6px;overflow-x:auto;padding:4px 0 12px;scrollbar-width:none}
+  .teacher-tabs::-webkit-scrollbar{display:none}
+  .tt{flex-shrink:0;padding:8px 14px;border-radius:18px;border:2px solid #ddd;background:#fff;font-size:13px;font-weight:600;color:#888;cursor:pointer;transition:all .15s;position:relative}
+  .tt.on{border-color:#e67e22;background:#fef5ed;color:#e67e22}
+  .tt.done::after{content:'✓';position:absolute;top:-4px;right:-4px;width:16px;height:16px;background:#27ae60;border-radius:50%;font-size:10px;color:#fff;display:flex;align-items:center;justify-content:center}
+
+  .input-table{width:100%;border-collapse:collapse;font-size:13px}
+  .input-table th{background:#f5f7fa;padding:8px 4px;text-align:center;font-weight:700;color:#555;border-bottom:2px solid #ddd}
+  .input-table td{padding:6px 2px;text-align:center;border-bottom:1px solid #eee}
+  .cls-label{font-weight:700;color:#444;text-align:left;padding-left:8px}
+
+  .score-input{width:40px;height:34px;border:1.5px solid #ddd;border-radius:8px;text-align:center;font-size:14px;font-weight:600;color:#333;outline:none;transition:border-color .15s}
+  .score-input:focus{border-color:#e67e22}
+  .score-input.filled{background:#fef5ed;border-color:#e67e22}
+  .row-total-admin{font-weight:700;color:#e67e22;font-size:14px}
+
+  .stats-section{margin-top:18px}
+  .stats-title{font-size:16px;font-weight:700;color:#333;margin-bottom:12px}
+
+  .submit-time{font-size:12px;color:#27ae60;background:#eafaf1;padding:6px 10px;border-radius:8px;margin-bottom:10px;border-left:3px solid #27ae60}
+
+  .toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.8);color:#fff;padding:8px 22px;border-radius:18px;font-size:13px;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none}
+  .toast.show{opacity:1}
+</style>
 </head>
 <body>
 
-    <!-- Parallax Background Elements -->
-    <div class="parallax-layer p1" style="top: 10%; left: 5%;">🎈</div>
-    <div class="parallax-layer p2" style="top: 15%; right: 10%;">🎪</div>
-    <div class="parallax-layer p3" style="top: 40%; left: -5%;">☁️</div>
-    <div class="parallax-layer p4" style="top: 60%; right: -5%;">☁️</div>
-    <div class="parallax-layer p5" style="top: 80%; left: 10%;">✨</div>
+<div class="header teacher-mode" id="mainHeader">
+  <h1>114學年度親職教育日</h1>
+  <div class="sub">園遊會攤位評分系統</div>
+</div>
 
-    <style>
-        .parallax-layer {
-            position: fixed;
-            font-size: 3rem;
-            z-index: -1;
-            opacity: 0.6;
-            transition: transform 0.1s linear;
-            will-change: transform;
-        }
-        .p1 { font-size: 4rem; }
-        .p2 { font-size: 5rem; }
-        .p3 { font-size: 8rem; opacity: 0.3; }
-        .p4 { font-size: 6rem; opacity: 0.3; }
+<div class="container">
 
-        /* 活動日程 - 當前時段高亮 */
-        .t-item.t-now {
-            background: linear-gradient(135deg, #fff3cd, #ffeaa7) !important;
-            border: 2.5px solid #f39c12 !important;
-            box-shadow: 0 0 12px rgba(243, 156, 18, 0.4);
-            animation: pulse-glow 2s ease-in-out infinite;
-            transform: scale(1.08);
-        }
-        .t-item.t-done {
-            opacity: 0.45;
-            filter: grayscale(0.3);
-        }
-        .t-item.t-upcoming {
-            opacity: 1;
-        }
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 8px rgba(243, 156, 18, 0.3); }
-            50% { box-shadow: 0 0 18px rgba(243, 156, 18, 0.6); }
-        }
-    </style>
-
-    <header class="hero-section">
-        <div class="hero-content">
-            <span class="badge">青溪國小</span>
-            <h1 class="main-title">114學年度<br>親職教育日</h1>
-            
-            <!-- 倒數計時 (Small Pill Style) -->
-            <div class="countdown-container">
-                <div class="time-block">
-                    <span id="days" class="number">00</span>
-                    <span class="label">天</span>
-                </div>
-                <div class="separator">:</div>
-                <div class="time-block">
-                    <span id="hours" class="number">00</span>
-                    <span class="label">時</span>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- 跑馬燈 -->
-    <div class="marquee-strip">
-        <p>📢 歡迎蒞臨無限城嘉年華！全校攤位 09:00 準時開賣！請自備環保餐具，愛地球做環保！祝大家玩得開心！</p>
+  <!-- 角色選擇 -->
+  <div class="screen role-screen active" id="scrRole">
+    <div class="role-icon" style="background:linear-gradient(135deg,#4a90d9,#e67e22)">📋</div>
+    <div class="role-title">請選擇身份</div>
+    <div class="role-desc">評分老師直接打分數<br>管理者查看統計結果</div>
+    <div class="role-cards">
+      <div class="role-card" onclick="pickRole('teacher')">
+        <div class="rc-icon">✏️</div>
+        <div class="rc-title">評分老師</div>
+        <div class="rc-desc">各班攤位評分<br>評完直接送出</div>
+      </div>
+      <div class="role-card" onclick="pickRole('admin')">
+        <div class="rc-icon">📊</div>
+        <div class="rc-title">管理者</div>
+        <div class="rc-desc">輸入/查看分數<br>統計名次結果</div>
+      </div>
     </div>
+  </div>
 
-    <!-- 快捷導航 (App Icon 風格) -->
-    <nav class="quick-nav">
-        <a href="stories.html" class="nav-item">
-            <div class="icon-circle story-icon">🏰</div>
-            <span>故事牆</span>
-        </a>
-        <a href="#map-modal" class="nav-item" onclick="openMap()">
-            <div class="icon-circle map-icon">🗺️</div>
-            <span>校園地圖</span>
-        </a>
-    </nav>
-
-    <main class="container">
-        <!-- 活動時程 -->
-        <section class="section-card timeline-card">
-            <h2 class="section-title">📅 活動日程 (3/28)</h2>
-            <div class="timeline-row">
-                <div class="t-item" data-start="08:10" data-end="08:50">
-                    <span class="t-time">08:10</span>
-                    <span class="t-desc">開幕儀式</span>
-                </div>
-                <div class="t-line"></div>
-                <div class="t-item" data-start="08:50" data-end="09:00">
-                    <span class="t-time">08:50</span>
-                    <span class="t-desc">快閃表演</span>
-                </div>
-                <div class="t-line"></div>
-                <div class="t-item" data-start="09:00" data-end="11:30">
-                    <span class="t-time">09:00</span>
-                    <span class="t-desc">園遊會開賣</span>
-                </div>
-                <div class="t-line"></div>
-                <div class="t-item" data-start="11:30" data-end="12:40">
-                    <span class="t-time">11:30</span>
-                    <span class="t-desc">場地復原</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- 攤位搜尋 -->
-        <section class="booth-section">
-            <h2 class="section-title">🔍 探索攤位</h2>
-            
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="搜尋班級 (如 506) 或食物...">
-                <button class="search-btn">Go</button>
-            </div>
-
-            <div class="filter-pills">
-                <button class="pill active" data-filter="all">全部</button>
-                <button class="pill" data-filter="food">😋 美食</button>
-                <button class="pill" data-filter="goods">🛍️ 好物</button>
-                <button class="pill" data-filter="game">🎮 遊戲</button>
-            </div>
-
-            <!-- 瀑布流卡片 -->
-            <div class="booth-grid" id="boothGrid">
-                <!-- 由 JS 動態生成 -->
-            </div>
-        </section>
-    </main>
-
-    <!-- 地圖模態視窗 (Modal) -->
-    <div id="mapModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeMap()">&times;</span>
-            <h3>🗺️ 校園地圖</h3>
-            <img src="picture.jpg" alt="Map" style="width:100%; border-radius:10px;">
-            <a href="https://www.csps.tyc.edu.tw/modules/tadnews/page.php?nsn=29" target="_blank" class="full-map-btn">查看清晰大圖</a>
-        </div>
+  <!-- 老師登入 -->
+  <div class="screen" id="scrTeacherLogin" style="padding-top:20px">
+    <span class="field-label">選擇評分年級</span>
+    <div class="grid3" id="tGradeGrid"></div>
+    <div id="tTeacherWrap" style="display:none">
+      <span class="field-label">選擇您的姓名</span>
+      <div id="tTeacherList"></div>
     </div>
+    <div id="tCountRow" style="display:none"></div>
+    <button class="big-btn blue" id="tStartBtn" disabled onclick="tStartScoring()">開始評分</button>
+  </div>
 
-    <!-- 底部 -->
-    <footer>
-        <p>© 2026 青溪國小親職教育日</p>
-    </footer>
+  <!-- 老師評分 -->
+  <div class="screen" id="scrTeacherScore">
+    <div class="info-bar" id="tInfoBar"></div>
+    <div class="progress-text" id="tProgress"></div>
+    <div class="class-tabs" id="tClassTabs"></div>
+    <div id="tScoreArea"></div>
+    <div class="bottom-bar">
+      <button class="b-btn sec" onclick="tGoBack()">返回</button>
+      <button class="b-btn pri" id="tSubmitBtn" onclick="tSubmit()">✓ 提交評分</button>
+    </div>
+  </div>
 
-    <script>
-        // 資料庫
-        const booths = [
-            { cls: "101", name: "一起來逛街", type: "goods", loc: "和平樓 1F", desc: "市集" },
-            { cls: "102", name: "102號寶庫", type: "goods", loc: "和平樓 1F", desc: "餅乾、水果、文具" },
-            { cls: "103", name: "蚤好物、找好物", type: "goods", loc: "和平樓 1F", desc: "手作、二手生活用品、書、玩具、文具" },
-            { cls: "105", name: "五彩繽紛小市集", type: "food", loc: "和平樓 1F", desc: "茶葉蛋、油飯、Q凍、雪Q餅、果汁、爆米花、馬林糖、文具、小公仔、夾娃娃機" },
-            { cls: "106", name: "一溜甜甜屋", type: "food", loc: "和平樓 1F", desc: "奶酪、餅乾、紅茶、奶茶、越南鳥蛋、酥餅、珍珠奶茶、棉花糖餅乾串、蛋塔" },
-            { cls: "108", name: "108快樂小舖", type: "goods", loc: "和平樓 1F", desc: "全新及九成新的生活物品" },
-            { cls: "201", name: "幸福柑仔店", type: "goods", loc: "和平樓 2F", desc: "文具驚喜包、二手小物、娃娃、健康餅乾驚喜包、手工編織小物" },
-            { cls: "203", name: "203快樂屋", type: "food", loc: "和平樓 2F", desc: "冷滷味、炒麵、文具、娃娃" },
-            { cls: "205", name: "二五歡樂市集", type: "goods", loc: "和平樓 2F", desc: "兒童手飾、餅乾、玩具、泡泡機、存錢筒、小汽車、貼紙、布偶、果醬" },
-            { cls: "206", name: "206尋寶店", type: "goods", loc: "和平樓 2F", desc: "二手物品販售" },
-            { cls: "207", name: "寶藏屋", type: "goods", loc: "和平樓 2F", desc: "二手玩具、玩偶、書籍" },
-            { cls: "301", name: "301攤位", type: "food", loc: "和平樓 3F", desc: "飲料、二手良物、馬林糖" },
-            { cls: "302", name: "302奇幻屋", type: "goods", loc: "和平樓 3F", desc: "文具、生活雜貨" },
-            { cls: "303", name: "歡樂33", type: "food", loc: "和平樓 3F", desc: "一口小香腸、彈珠汽水、茶葉蛋、草莓煉乳、玩偶、文具" },
-            { cls: "304", name: "304攤位", type: "food", loc: "和平樓 3F", desc: "滷味、茶葉蛋、綜合果汁、布丁、炒米粉、馬林糖、珍珠奶茶、古早味蛋糕" },
-            { cls: "305", name: "五告吼呷", type: "food", loc: "和平樓 3F", desc: "糖葫蘆、香菇、蛋塔、遊戲（品項暫定）" },
-            { cls: "308", name: "308商店屋", type: "goods", loc: "和平樓 3F", desc: "二手娃娃、吊飾、卡片、茶葉蛋、冰棒、小飯糰、冬瓜茶" },
-            { cls: "309", name: "三九幸福小屋", type: "game", loc: "和平樓 3F", desc: "射擊遊戲" },
-            { cls: "404", name: "魔法天堂", type: "game", loc: "和平樓 4F", desc: "投籃遊戲、各類美食、文具用品" },
-            { cls: "405", name: "405夜市", type: "goods", loc: "和平樓 4F", desc: "二手商品" },
-            { cls: "406", name: "快來六班找好康", type: "goods", loc: "和平樓 4F", desc: "食品、飲料、小益智遊戲、手做商品等" },
-            { cls: "407", name: "不平凡的407", type: "goods", loc: "和平樓 4F", desc: "雪Q餅、彈珠汽水、DIY小吊飾、玩偶、文具、咕卡、積木、二手書" },
-            { cls: "408", name: "408無限城", type: "food", loc: "和平樓 4F", desc: "扭蛋、娃娃、桌遊、餅乾、滷味、飲料、包子、套圈圈、彈珠台" },
-            { cls: "409", name: "歡樂選購409", type: "goods", loc: "和平樓 4F", desc: "文具用品、卡牌、日用品" },
-            { cls: "502", name: "吐司市集", type: "game", loc: "和平樓 5F", desc: "飲料、娃娃、夾娃娃、乒乓球" },
-            { cls: "504", name: "百四可樂", type: "goods", loc: "和平樓 5F", desc: "吃的、玩的、用的通通有" },
-            { cls: "505", name: "無所不能", type: "food", loc: "和平樓 5F", desc: "飲料、茶葉蛋及益智遊戲" },
-            { cls: "506", name: "讚不絕口666", type: "food", loc: "和平樓 5F", desc: "餅乾、糖果、零食、飲料、二手物品" },
-            { cls: "507", name: "宜居7息地", type: "game", loc: "和平樓 5F", desc: "套圈圈、投乒乓球、二手商品、小飾品、娃娃、零嘴、飲料" },
-            { cls: "508", name: "奇雞街坊", type: "goods", loc: "和平樓 5F", desc: "吊飾、娃娃、可愛物品、文具、玩具、書" },
-            { cls: "509", name: "人體拉霸機", type: "game", loc: "和平樓 5F", desc: "三位關主舉課本，三本相同即可獲得小禮物" },
-            { cls: "510", name: "十物招領", type: "food", loc: "和平樓 5F", desc: "小型市集，多種不同攤販供顧客選擇" },
-            { cls: "601", name: "六一玩很大", type: "game", loc: "和平樓 6F", desc: "棒球九宮格、彈跳丟丟球、黏黏小手、魔方競速" },
-            { cls: "602", name: "602遊戲王又贏了!", type: "game", loc: "和平樓 6F", desc: "益智遊戲闖關：腦力+手眼協調大考驗" },
-            { cls: "603", name: "星光影城＆挖寶小市集", type: "goods", loc: "和平樓 6F", desc: "餅乾、飲料、卡通影片欣賞、跳蚤市場" },
-            { cls: "604", name: "四海遊龍", type: "food", loc: "和平樓 6F", desc: "杯裝汽水、冰淇淋、乒乓球投進杯子、茶葉蛋" },
-            { cls: "605", name: "飲飲為傲", type: "food", loc: "和平樓 6F", desc: "販售飲品、甜點、冰淇淋" },
-            { cls: "607", name: "67柑仔店", type: "goods", loc: "和平樓 6F", desc: "娃娃、琥珀糖、雪Q餅、吉他表演" },
-            { cls: "608", name: "八方來財", type: "food", loc: "和平樓 6F", desc: "餅乾、糖果、飲料、益智遊戲：瑞利球" },
-            { cls: "609", name: "9-11", type: "game", loc: "和平樓 6F", desc: "UNO對決、推杯子、射箭、拍立得、許願池" },
-            { cls: "610", name: "魔法販賣部", type: "food", loc: "和平樓 6F", desc: "果汁、水果、手工餅乾、益智遊戲" },
-            { cls: "創造力班", name: "即刻對決", type: "game", loc: "創造力班教室", desc: "影像辨識遊戲+雷切吊飾" },
-            { cls: "幼兒園藍天班", name: "肉肉創作屋", type: "goods", loc: "幼兒園", desc: "多肉植物盆栽DIY" },
-            { cls: "幼兒園彩虹班", name: "什麼都有店", type: "goods", loc: "幼兒園", desc: "二手玩具、文具" }
-        ];
+  <!-- 老師結果 -->
+  <div class="screen" id="scrTeacherResult">
+    <div class="result-top">
+      <div class="chk">✓</div>
+      <div class="role-title">評分完成！</div>
+      <div class="role-desc" id="tResSub"></div>
+    </div>
+    <div class="res-card">
+      <table class="res-table" id="tResTable"></table>
+    </div>
+    <div class="act-btns">
+      <button class="act-btn copy" onclick="tCopyRes()">📋 複製評分結果</button>
+      <button class="act-btn line" onclick="tShareLine()">💬 LINE 傳送給管理者</button>
+      <div style="text-align:center;font-size:12px;color:#999;margin-top:4px">管理者 LINE ID：wanbadan3310</div>
+      <button class="act-btn reset" onclick="goHome()">🏠 回首頁</button>
+    </div>
+  </div>
 
-        const grid = document.getElementById('boothGrid');
-        const searchInput = document.getElementById('searchInput');
-        const pills = document.querySelectorAll('.pill');
+  <!-- 管理者 -->
+  <div class="screen" id="scrAdmin">
+    <div class="admin-grade-bar" id="aGradeBar"></div>
+    <div class="info-bar">切換各評分老師分頁輸入分數，系統自動計算平均與名次。<br>老師提交的評分也會自動出現在這裡。</div>
+    <div class="teacher-tabs" id="aTeacherTabs"></div>
+    <div id="aInputArea"></div>
 
-        function renderBooths(filterType = 'all', searchText = '') {
-            grid.innerHTML = '';
-            
-            const filtered = booths.filter(b => {
-                const matchType = filterType === 'all' || b.type === filterType;
-                const matchText = b.name.includes(searchText) || b.cls.includes(searchText) || (b.desc && b.desc.includes(searchText));
-                return matchType && matchText;
-            });
+    <div class="stats-section" id="aStatsSection" style="display:none">
+      <div class="stats-title">📊 統計結果</div>
+      <div class="res-card">
+        <table class="res-table" id="aStatsTable"></table>
+      </div>
+      <div class="act-btns">
+        <button class="act-btn orange" onclick="aCopyStats()">📋 複製統計結果</button>
+        <button class="act-btn line" onclick="aShareLine()">💬 LINE 傳送</button>
+        <button class="act-btn copy" onclick="aExportAll()">📊 匯出全年級</button>
+        <button class="act-btn reset" onclick="goHome()">🏠 回首頁</button>
+      </div>
+    </div>
+  </div>
 
-            if(filtered.length === 0) {
-                grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; color:#999; padding:20px;">找不到相關攤位 🥲</div>';
-                return;
-            }
+</div>
 
-            filtered.forEach(b => {
-                let typeLabel = b.type === 'food' ? '美食' : (b.type === 'game' ? '遊戲' : '好物');
-                let typeClass = `type-${b.type}`;
-                
-                const card = document.createElement('div');
-                card.className = `booth-card ${typeClass}`;
-                card.innerHTML = `
-                    <div class="booth-header">
-                        <span class="booth-class">${b.cls}</span>
-                        <span class="booth-tag">${typeLabel}</span>
-                    </div>
-                    <h3>${b.name}</h3>
-                    ${b.desc ? `<p class="booth-desc">${b.desc}</p>` : ''}
-                    <p class="booth-loc">📍 ${b.loc}</p>
-                `;
-                grid.appendChild(card);
-            });
-        }
+<div class="toast" id="toast"></div>
 
-        // Init
-        renderBooths();
+<script>
+const TEACHERS={
+  "一年級":["建能主任","玉芳老師","婕嫣老師"],
+  "二年級":["詩博老師","秀雯老師","育霖老師"],
+  "三年級":["繼洋老師","宣勻老師","政輝老師"],
+  "四年級":["玉雪主任","偉甄老師","益誌老師"],
+  "五年級":["嘉琪老師","人鋐老師","穎薇老師","彥婷老師"],
+  "六年級":["珮倫老師","心盈老師","一智老師","文瓊老師"]
+};
+const CRITERIA=[
+  {key:"dec",name:"攤位佈置"},{key:"tidy",name:"場地整潔"},
+  {key:"manner",name:"學生禮節"},{key:"spirit",name:"團隊精神"},
+  {key:"other",name:"其他表現"}
+];
+const MAX=10,GRADES=Object.keys(TEACHERS);
 
-        // Search Listener
-        searchInput.addEventListener('input', (e) => {
-            const activePill = document.querySelector('.pill.active');
-            renderBooths(activePill.dataset.filter, e.target.value);
-        });
+let role=null;
+let aCurGrade=GRADES[0],aCurTeacher=0;
+let aClassCounts={},aData={},aTimestamps={};
+let tGrade=null,tTeacher=null,tClassCount=10,tCurClass=0;
+let tScores=[];
 
-        // Filter Listener
-        pills.forEach(pill => {
-            pill.addEventListener('click', () => {
-                pills.forEach(p => p.classList.remove('active'));
-                pill.classList.add('active');
-                renderBooths(pill.dataset.filter, searchInput.value);
-            });
-        });
+const FIXED_COUNTS={"一年級":8,"二年級":8,"三年級":9,"四年級":9,"五年級":10,"六年級":10};
+GRADES.forEach(g=>{aClassCounts[g]=FIXED_COUNTS[g];aData[g]={};aTimestamps[g]={};TEACHERS[g].forEach(t=>{aData[g][t]=null;aTimestamps[g][t]=null;});});
 
-        // Countdown Logic
-        const targetDate = new Date("2026-03-28T09:00:00").getTime();
-        
-        // Auto-switch to Event Mode on 2026/03/28
-        const today = new Date();
-        // Check for 3/28 (Month is 0-indexed, so 2 is March)
-        if (today.getFullYear() === 2026 && today.getMonth() === 2 && today.getDate() === 28) {
-            document.body.classList.add('event-day-mode');
-            document.querySelector('.marquee-strip p').innerText = "📢 活動進行中！歡迎蒞臨 114 學年度親職教育日！請多利用下方地圖與攤位搜尋！";
-        }
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function setHeader(mode){const h=document.getElementById('mainHeader');h.className='header '+(mode==='admin'?'admin-mode':'teacher-mode');h.querySelector('.sub').textContent=mode==='admin'?'評分統計系統（管理者）':'園遊會攤位評分系統';}
+function pickRole(r){role=r;if(r==='teacher'){var pw=prompt('請輸入評分老師密碼：');if(pw!=='csps115'){alert('密碼錯誤！');return;}setHeader('teacher');initTeacherLogin();show('scrTeacherLogin');}else{var pw=prompt('請輸入管理者密碼：');if(pw!=='csps2026'){alert('密碼錯誤！');return;}setHeader('admin');initAdmin();show('scrAdmin');}}
+function goHome(){setHeader('teacher');show('scrRole');}
 
-        // 活動日程 - 根據當前時間自動高亮對應時段（每天都會動）
-        function highlightCurrentSlot() {
-            const now = new Date();
-            const hhmm = now.getHours() * 60 + now.getMinutes();
-            const items = document.querySelectorAll('.t-item[data-start]');
-            items.forEach(item => {
-                const [sh, sm] = item.dataset.start.split(':').map(Number);
-                const [eh, em] = item.dataset.end.split(':').map(Number);
-                const startMin = sh * 60 + sm;
-                const endMin = eh * 60 + em;
-                item.classList.remove('t-now', 't-done', 't-upcoming');
-                if (hhmm >= startMin && hhmm < endMin) {
-                    item.classList.add('t-now');
-                } else if (hhmm >= endMin) {
-                    item.classList.add('t-done');
-                } else {
-                    item.classList.add('t-upcoming');
-                }
-            });
-        }
-        highlightCurrentSlot();
-        setInterval(highlightCurrentSlot, 30000); // 每 30 秒更新一次
+// ===== 老師登入 =====
+function initTeacherLogin(){
+  const grid=document.getElementById('tGradeGrid');grid.innerHTML='';
+  tGrade=null;tTeacher=null;tClassCount=10;
+  document.getElementById('tStartBtn').disabled=true;
+  document.getElementById('tTeacherWrap').style.display='none';
+  document.getElementById('tCountRow').style.display='none';
+  GRADES.forEach(g=>{const b=document.createElement('button');b.className='g-btn';b.textContent=g;b.onclick=()=>tPickGrade(g);grid.appendChild(b);});
+}
+function tPickGrade(g){
+  tGrade=g;tTeacher=null;document.getElementById('tStartBtn').disabled=true;
+  document.querySelectorAll('#tGradeGrid .g-btn').forEach(b=>b.classList.toggle('on',b.textContent===g));
+  document.getElementById('tTeacherWrap').style.display='block';
+  const list=document.getElementById('tTeacherList');list.innerHTML='';
+  TEACHERS[g].forEach(t=>{const b=document.createElement('button');b.className='t-btn';b.textContent=t;b.onclick=()=>{tTeacher=t;document.querySelectorAll('#tTeacherList .t-btn').forEach(x=>x.classList.remove('on'));b.classList.add('on');document.getElementById('tStartBtn').disabled=false;};list.appendChild(b);});
+  tClassCount=FIXED_COUNTS[g];
+}
+function tAdjCount(d){tClassCount=Math.max(1,Math.min(15,tClassCount+d));document.getElementById('tCntVal').textContent=tClassCount;}
 
-        setInterval(() => {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-            if (distance > 0) {
-                document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
-                document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            } else {
-                document.getElementById("days").innerText = "00";
-            }
-        }, 1000);
+// ===== 老師評分 =====
+function tStartScoring(){
+  if(!tGrade||!tTeacher)return;
+  tScores=[];for(let i=0;i<tClassCount;i++){const o={};CRITERIA.forEach(c=>o[c.key]=0);tScores.push(o);}
+  tCurClass=0;show('scrTeacherScore');
+  document.getElementById('tInfoBar').innerHTML=`<strong>${tTeacher}</strong>｜${tGrade}（${tClassCount} 班）<br>點選數字即可給分，評完自動跳下一班`;
+  tRenderTabs();tRenderCard();
+}
+function tRenderTabs(){
+  const w=document.getElementById('tClassTabs');w.innerHTML='';
+  for(let i=0;i<tClassCount;i++){const t=document.createElement('button');t.className='tab'+(i===tCurClass?' on':'');t.textContent=`${i+1}班`;if(tDone(i)&&i!==tCurClass)t.classList.add('done');t.onclick=()=>{tCurClass=i;tRenderTabs();tRenderCard();};w.appendChild(t);}
+  const a=w.querySelector('.tab.on');if(a)a.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+  const done=tScores.filter((_,i)=>tDone(i)).length;
+  document.getElementById('tProgress').textContent=`已完成 ${done}/${tClassCount} 班`;
+  document.getElementById('tSubmitBtn').disabled=done<tClassCount;
+}
+function tDone(i){return CRITERIA.every(c=>tScores[i][c.key]>0);}
+function tRenderCard(){
+  const s=tScores[tCurClass];
+  let h=`<div class="score-card"><h3>${tGrade} ${tCurClass+1}班</h3>`;
+  CRITERIA.forEach(c=>{h+=`<div class="row"><span class="row-label">${c.name}</span><div class="star-group">`;for(let n=1;n<=MAX;n++)h+=`<button class="star${s[c.key]>=n?' on':''}" onclick="tSet('${c.key}',${n})">${n}</button>`;h+=`</div><span class="row-score">${s[c.key]||'-'}</span></div>`;});
+  const total=CRITERIA.reduce((sum,c)=>sum+s[c.key],0);
+  h+=`<div class="total-row"><span class="total-label">總分</span><span class="total-val">${total||'-'}</span></div></div>`;
+  document.getElementById('tScoreArea').innerHTML=h;
+}
+function tSet(key,val){
+  tScores[tCurClass][key]=val;tRenderCard();tRenderTabs();
+  if(tDone(tCurClass)&&tCurClass<tClassCount-1){setTimeout(()=>{for(let i=tCurClass+1;i<tClassCount;i++){if(!tDone(i)){tCurClass=i;tRenderTabs();tRenderCard();showToast(`跳到 ${i+1}班`);return;}}},350);}
+}
+function tGoBack(){if(tScores.some((_,i)=>tDone(i))&&!confirm('返回將清除評分，確定嗎？'))return;show('scrTeacherLogin');}
 
-        // Modal Logic
-        function openMap() { document.getElementById('mapModal').style.display = 'flex'; }
-        function closeMap() { document.getElementById('mapModal').style.display = 'none'; }
+// ===== 老師提交 =====
+function tSubmit(){
+  const u=tScores.findIndex((_,i)=>!tDone(i));
+  if(u>=0){showToast(`${u+1}班 尚有未評項目`);tCurClass=u;tRenderTabs();tRenderCard();return;}
+  aClassCounts[tGrade]=tClassCount;if(!aData[tGrade])aData[tGrade]={};
+  aData[tGrade][tTeacher]=JSON.parse(JSON.stringify(tScores));aTimestamps[tGrade][tTeacher]=new Date().toLocaleString('zh-TW');saveLS();
+  show('scrTeacherResult');document.getElementById('tResSub').innerHTML=`${tTeacher}｜${tGrade}<br><span style="font-size:12px;color:#e67e22">請將結果傳送給管理者 LINE: wanbadan3310</span>`;tRenderResult();
+}
+function tRenderResult(){
+  const tots=tScores.map((s,i)=>({cls:i+1,s,total:CRITERIA.reduce((sum,c)=>sum+s[c.key],0)}));
+  tots.sort((a,b)=>b.total-a.total);let r=1;tots.forEach((it,i)=>{if(i>0&&it.total<tots[i-1].total)r=i+1;it.rank=r;});
+  const d=[...tots].sort((a,b)=>a.cls-b.cls);
+  let h=`<tr><th>班級</th>`;CRITERIA.forEach(c=>h+=`<th>${c.name}</th>`);h+=`<th>總分</th><th>名次</th></tr>`;
+  d.forEach(x=>{const rc=x.rank<=3?` rank-${x.rank}`:'';h+=`<tr><td><strong>${x.cls}班</strong></td>`;CRITERIA.forEach(c=>h+=`<td>${x.s[c.key]}</td>`);h+=`<td class="highlight">${x.total}</td><td class="${rc}">${x.rank}</td></tr>`;});
+  document.getElementById('tResTable').innerHTML=h;
+}
+function tGetText(){
+  const d=tScores.map((s,i)=>({cls:i+1,s,total:CRITERIA.reduce((sum,c)=>sum+s[c.key],0)}));
+  const sorted=[...d].sort((a,b)=>b.total-a.total);let r=1;sorted.forEach((it,i)=>{if(i>0&&it.total<sorted[i-1].total)r=i+1;it.rank=r;});
+  sorted.forEach(x=>d[x.cls-1].rank=x.rank);
+  let t=`📋 114學年度親職教育日\n園遊會攤位評分結果\n━━━━━━━━━━\n評分老師：${tTeacher}\n評分年級：${tGrade}\n━━━━━━━━━━\n班級 | `;
+  CRITERIA.forEach(c=>t+=`${c.name} | `);t+=`總分 | 名次\n──────────\n`;
+  d.forEach(x=>{t+=`${x.cls}班 | `;CRITERIA.forEach(c=>t+=`${x.s[c.key]} | `);t+=`${x.total} | 第${x.rank}名\n`;});
+  t+=`━━━━━━━━━━\n`;const now=new Date(),p=n=>String(n).padStart(2,'0');
+  t+=`評分時間：${now.getFullYear()}/${p(now.getMonth()+1)}/${p(now.getDate())} ${p(now.getHours())}:${p(now.getMinutes())}`;return t;
+}
+function tCopyRes(){doCopy(tGetText());}
+function shareLine(text){const t=encodeURIComponent(text);const isM=/iPhone|iPad|Android/i.test(navigator.userAgent);if(isM){window.location.href='line://msg/text/'+t;}else{window.open('https://social-plugins.line.me/lineit/share?url=&text='+t,'_blank');}}
 
-        // Parallax Effect (Background)
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            document.querySelectorAll('.bg-shape').forEach((el, index) => {
-                const speed = (index + 1) * 0.1;
-                el.style.transform = `translateY(${scrolled * speed}px)`;
-            });
-        });
-    </script>
+// ===== 管理者 =====
+function initAdmin(){
+  aCurGrade=GRADES[0];aCurTeacher=0;
+  const bar=document.getElementById('aGradeBar');bar.innerHTML='';
+  GRADES.forEach(g=>{const b=document.createElement('button');b.className='ag-btn'+(g===aCurGrade?' on':'');b.textContent=g;b.onclick=()=>{aCurGrade=g;aCurTeacher=0;aRefresh();};bar.appendChild(b);});
+  aRefresh();
+}
+function aRefresh(){
+  document.querySelectorAll('.ag-btn').forEach(b=>b.classList.toggle('on',b.textContent===aCurGrade));
+  document.getElementById('aCntVal').textContent=aClassCounts[aCurGrade];
+  aEnsure();aRenderTT();aRenderInput();aRenderStats();
+}
+function aEnsure(){
+  const g=aCurGrade,cnt=aClassCounts[g];
+  TEACHERS[g].forEach(t=>{
+    if(!aData[g][t]||aData[g][t].length!==cnt){
+      const old=aData[g][t]||[];aData[g][t]=[];
+      for(let i=0;i<cnt;i++){if(old[i])aData[g][t].push({...old[i]});else{const o={};CRITERIA.forEach(c=>o[c.key]=0);aData[g][t].push(o);}}
+    }
+  });
+}
+function aAdjCount(d){aClassCounts[aCurGrade]=Math.max(1,Math.min(15,aClassCounts[aCurGrade]+d));aEnsure();aRefresh();saveLS();}
+function aRenderTT(){
+  const w=document.getElementById('aTeacherTabs');w.innerHTML='';
+  TEACHERS[aCurGrade].forEach((t,i)=>{
+    const btn=document.createElement('button');btn.className='tt'+(i===aCurTeacher?' on':'');btn.textContent=t;
+    if(aTDone(t)&&i!==aCurTeacher)btn.classList.add('done');
+    btn.onclick=()=>{aCurTeacher=i;aRenderTT();aRenderInput();};w.appendChild(btn);
+  });
+}
+function aTDone(t){const a=aData[aCurGrade][t];return a&&a.every(cls=>CRITERIA.every(c=>cls[c.key]>0));}
+function aRenderInput(){
+  const teacher=TEACHERS[aCurGrade][aCurTeacher],cnt=aClassCounts[aCurGrade],scores=aData[aCurGrade][teacher];
+  const ts=aTimestamps[aCurGrade]&&aTimestamps[aCurGrade][teacher];
+  let h=`<div class="score-card"><h3>${teacher}的評分</h3>${ts?`<div class="submit-time">📌 提交時間：${ts}</div>`:''}<table class="input-table"><tr><th>班級</th>`;
+  CRITERIA.forEach(c=>h+=`<th>${c.name}</th>`);h+=`<th>總分</th></tr>`;
+  for(let i=0;i<cnt;i++){
+    const s=scores[i],total=CRITERIA.reduce((sum,c)=>sum+(s[c.key]||0),0);
+    h+=`<tr><td class="cls-label">${i+1}班</td>`;
+    CRITERIA.forEach(c=>{const v=s[c.key]||'';h+=`<td><input type="number" class="score-input${v?' filled':''}" min="0" max="${MAX}" value="${v||''}" inputmode="numeric" pattern="[0-9]*" onfocus="this.select()" oninput="aSet('${teacher}',${i},'${c.key}',this)" onchange="aSet('${teacher}',${i},'${c.key}',this)"></td>`;});
+    h+=`<td class="row-total-admin">${total||'-'}</td></tr>`;
+  }
+  h+=`</table></div>`;document.getElementById('aInputArea').innerHTML=h;
+}
+function aSet(teacher,ci,key,el){
+  let v=parseInt(el.value);if(isNaN(v)||v<0)v=0;if(v>MAX){v=MAX;el.value=v;}
+  aData[aCurGrade][teacher][ci][key]=v;el.classList.toggle('filled',v>0);
+  const s=aData[aCurGrade][teacher][ci];el.closest('tr').querySelector('.row-total-admin').textContent=CRITERIA.reduce((sum,c)=>sum+(s[c.key]||0),0)||'-';
+  aRenderTT();aRenderStats();saveLS();
+}
+function aRenderStats(){
+  const sec=document.getElementById('aStatsSection'),g=aCurGrade,cnt=aClassCounts[g],ts=TEACHERS[g];
+  let any=false;ts.forEach(t=>{if(aData[g][t])aData[g][t].forEach(cls=>{if(CRITERIA.some(c=>cls[c.key]>0))any=true;});});
+  if(!any){sec.style.display='none';return;}sec.style.display='block';
+  const res=[];
+  for(let i=0;i<cnt;i++){const tt=[];ts.forEach(t=>{const s=aData[g][t][i];tt.push(CRITERIA.reduce((sum,c)=>sum+(s[c.key]||0),0));});const avg=tt.reduce((a,b)=>a+b,0)/ts.length;res.push({cls:i+1,tt,avg});}
+  const sorted=[...res].sort((a,b)=>b.avg-a.avg);let rk=1;sorted.forEach((it,i)=>{if(i>0&&it.avg<sorted[i-1].avg)rk=i+1;it.rank=rk;});
+  sorted.forEach(s=>res[s.cls-1].rank=s.rank);
+  let h=`<tr><th>班級</th>`;ts.forEach(t=>h+=`<th>${t.replace('老師','').replace('主任','')}</th>`);h+=`<th>平均</th><th>名次</th></tr>`;
+  res.forEach(r=>{const rc=r.rank<=3?` rank-${r.rank}`:'';h+=`<tr><td><strong>${r.cls}班</strong></td>`;r.tt.forEach(t=>h+=`<td>${t||'-'}</td>`);h+=`<td class="highlight">${r.avg.toFixed(1)}</td><td class="${rc}">${r.rank}</td></tr>`;});
+  document.getElementById('aStatsTable').innerHTML=h;
+}
+function aGetText(grade){
+  const g=grade||aCurGrade,cnt=aClassCounts[g],ts=TEACHERS[g];
+  const res=[];for(let i=0;i<cnt;i++){const tt=[];ts.forEach(t=>{const s=aData[g][t][i];tt.push(CRITERIA.reduce((sum,c)=>sum+(s[c.key]||0),0));});res.push({cls:i+1,tt,avg:tt.reduce((a,b)=>a+b,0)/ts.length});}
+  const sorted=[...res].sort((a,b)=>b.avg-a.avg);let rk=1;sorted.forEach((it,i)=>{if(i>0&&it.avg<sorted[i-1].avg)rk=i+1;it.rank=rk;});
+  sorted.forEach(s=>res[s.cls-1].rank=s.rank);
+  let t=`📊 114學年度親職教育日\n${g} 評分統計\n━━━━━━━━━━\n班級 | `;ts.forEach(tc=>t+=`${tc.replace('老師','').replace('主任','')} | `);t+=`平均 | 名次\n──────────\n`;
+  res.forEach(r=>{t+=`${r.cls}班 | `;r.tt.forEach(v=>t+=`${v} | `);t+=`${r.avg.toFixed(1)} | 第${r.rank}名\n`;});
+  t+=`━━━━━━━━━━\n`;const now=new Date(),p=n=>String(n).padStart(2,'0');
+  t+=`統計時間：${now.getFullYear()}/${p(now.getMonth()+1)}/${p(now.getDate())} ${p(now.getHours())}:${p(now.getMinutes())}\n`;return t;
+}
+function aCopyStats(){doCopy(aGetText());}
+function shareLine(text){const t=encodeURIComponent(text);const isM=/iPhone|iPad|Android/i.test(navigator.userAgent);if(isM){window.location.href='line://msg/text/'+t;}else{window.open('https://social-plugins.line.me/lineit/share?url=&text='+t,'_blank');}}
+function aExportAll(){
+  let all=`📊 114學年度親職教育日 全年級統計\n\n`;
+  GRADES.forEach(g=>{let has=false;TEACHERS[g].forEach(t=>{if(aData[g][t])aData[g][t].forEach(cls=>{if(CRITERIA.some(c=>cls[c.key]>0))has=true;});});if(has)all+=aGetText(g)+'\n';});
+  doCopy(all);
+}
+
+// ===== localStorage =====
+function saveLS(){try{localStorage.setItem('pd_data',JSON.stringify(aData));localStorage.setItem('pd_counts',JSON.stringify(aClassCounts));localStorage.setItem('pd_timestamps',JSON.stringify(aTimestamps));}catch(e){}}
+function loadLS(){try{const d=localStorage.getItem('pd_data'),c=localStorage.getItem('pd_counts'),ts=localStorage.getItem('pd_timestamps');if(d){const p=JSON.parse(d);GRADES.forEach(g=>{if(p[g])TEACHERS[g].forEach(t=>{if(p[g][t])aData[g][t]=p[g][t];});});}if(c){const p=JSON.parse(c);GRADES.forEach(g=>{if(p[g])aClassCounts[g]=p[g];});}if(ts){const p=JSON.parse(ts);GRADES.forEach(g=>{if(p[g])TEACHERS[g].forEach(t=>{if(p[g][t])aTimestamps[g][t]=p[g][t];});});}}catch(e){}}
+
+// ===== 工具 =====
+function doCopy(text){if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(()=>showToast('已複製！')).catch(()=>fbCopy(text));else fbCopy(text);}
+function fbCopy(text){const ta=document.createElement('textarea');ta.value=text;ta.style.cssText='position:fixed;left:-9999px';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');showToast('已複製！');}catch(e){showToast('複製失敗');}document.body.removeChild(ta);}
+function showToast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),1800);}
+
+loadLS();
+</script>
 </body>
 </html>

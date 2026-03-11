@@ -182,9 +182,13 @@
 
             <div class="filter-pills">
                 <button class="pill active" data-filter="all">全部</button>
-                <button class="pill" data-filter="food">😋 美食</button>
-                <button class="pill" data-filter="goods">🛍️ 好物</button>
-                <button class="pill" data-filter="game">🎮 遊戲</button>
+                <button class="pill" data-filter="1">一年級</button>
+                <button class="pill" data-filter="2">二年級</button>
+                <button class="pill" data-filter="3">三年級</button>
+                <button class="pill" data-filter="4">四年級</button>
+                <button class="pill" data-filter="5">五年級</button>
+                <button class="pill" data-filter="6">六年級</button>
+                <button class="pill" data-filter="other">其他</button>
             </div>
 
             <!-- 瀑布流卡片 -->
@@ -274,13 +278,23 @@
         const searchClear = document.getElementById('searchClear');
         const pills = document.querySelectorAll('.pill');
 
-        function renderBooths(filterType = 'all', searchText = '') {
+        function renderBooths(filterGrade = 'all', searchText = '') {
             grid.innerHTML = '';
 
             const filtered = booths.filter(b => {
-                const matchType = filterType === 'all' || b.type === filterType;
+                let matchGrade = false;
+                if (filterGrade === 'all') {
+                    matchGrade = true;
+                } else if (filterGrade === 'other') {
+                    // 非 1~6 年級的班級（幼兒園、家長會、資源班、創造力班等）
+                    matchGrade = isNaN(parseInt(b.cls)) || parseInt(b.cls) < 100 || parseInt(b.cls) >= 700;
+                } else {
+                    // 年級篩選：班號首位數字 = 年級
+                    const num = parseInt(b.cls);
+                    matchGrade = !isNaN(num) && String(num).charAt(0) === filterGrade;
+                }
                 const matchText = b.name.includes(searchText) || b.cls.includes(searchText) || (b.desc && b.desc.includes(searchText));
-                return matchType && matchText;
+                return matchGrade && matchText;
             });
 
             // 按年級排序：先取班級數字，數字小的排前面，非數字的排最後

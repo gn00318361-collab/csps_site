@@ -409,11 +409,7 @@ function buildFloorSVG(floorNum) {
   const CX = 700, HP_Y = 80, ZX_Y = 730, SIDE_BY = 600;
   let svg = '';
 
-  // V guide lines
-  svg += `<line x1="${CX}" y1="${ZX_Y}" x2="80" y2="120" stroke="#E0E0E0" stroke-width="1.5" stroke-dasharray="8,4"/>`;
-  svg += `<line x1="${CX}" y1="${ZX_Y}" x2="1320" y2="120" stroke="#E0E0E0" stroke-width="1.5" stroke-dasharray="8,4"/>`;
-  svg += `<line x1="80" y1="120" x2="${CX}" y2="140" stroke="#E0E0E0" stroke-width="1.5" stroke-dasharray="8,4"/>`;
-  svg += `<line x1="1320" y1="120" x2="${CX}" y2="140" stroke="#E0E0E0" stroke-width="1.5" stroke-dasharray="8,4"/>`;
+
 
   // 和平樓 - top horizontal
   const hp = data["和平樓"];

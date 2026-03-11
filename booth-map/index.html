@@ -299,7 +299,7 @@ const booths = {
   "202": { name: "神奇2號小舖", type: "food", desc: "餅乾、茶葉蛋、彈珠汽水、盲盒、打彈珠、戳戳樂" },
   "306": { name: "集食廣益", type: "food", desc: "茶葉蛋、鬆餅、杯子蛋糕、海苔飯捲" },
   "402": { name: "402夢幻歡樂錢天堂", type: "game", desc: "乒乓九宮格、點數大比拚、二手跳蚤市場" },
-  "創課教室": { name: "即刻對決", type: "game", desc: "影像辨識遊戲+雷切吊飾" },
+  "資優班": { name: "即刻對決", type: "game", desc: "影像辨識遊戲+雷切吊飾" },
   "辦公室": { name: "家長會", type: "goods", desc: "福袋、文創小物" },
   "太陽班": { name: "好吃好玩的店", type: "goods", desc: "二手物品義賣" },
   "藍天班": { name: "肉肉創作屋", type: "goods", desc: "多肉植物盆栽DIY" },
@@ -522,3 +522,4 @@ function switchFloor(num) {
   document.querySelectorAll('.floor-tab').forEach(t => t.classList.toggle('active', +t.dataset.floor === num));
   const schoolMap = document.getElementById('schoolMapContainer');
   const svgCont = document.getElementById('svgContainer');
+ 

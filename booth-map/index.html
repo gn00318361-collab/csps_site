@@ -522,4 +522,37 @@ function switchFloor(num) {
   document.querySelectorAll('.floor-tab').forEach(t => t.classList.toggle('active', +t.dataset.floor === num));
   const schoolMap = document.getElementById('schoolMapContainer');
   const svgCont = document.getElementById('svgContainer');
- 
+  const legend = document.getElementById('legendBar');
+  const boothSection = document.querySelector('.booth-section');
+  const searchWrap = document.querySelector('.search-wrap');
+
+  if (num === 0) {
+    schoolMap.style.display = 'block';
+    svgCont.style.display = 'none';
+    legend.style.display = 'none';
+    boothSection.style.display = 'none';
+    searchWrap.style.display = 'none';
+  } else {
+    schoolMap.style.display = 'none';
+    svgCont.style.display = 'block';
+    legend.style.display = 'flex';
+    boothSection.style.display = 'block';
+    searchWrap.style.display = 'block';
+    svgCont.innerHTML = buildFloorSVG(num);
+    renderBoothList(num, document.getElementById('searchInput').value);
+  }
+}
+
+document.querySelectorAll('.floor-tab').forEach(tab => {
+  tab.addEventListener('click', () => switchFloor(+tab.dataset.floor));
+});
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  renderBoothList(currentFloor, e.target.value);
+});
+
+// Init — 預設顯示學校地圖
+switchFloor(0);
+</script>
+</body>
+</html>

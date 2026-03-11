@@ -1,6 +1,316 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
+<<<<<<< HEAD
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>114學年度親職教育日 - 青溪國小</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=final3">
+</head>
+<body>
+
+    <!-- Parallax Background Elements -->
+    <div class="parallax-layer p1" style="top: 10%; left: 5%;">🎈</div>
+    <div class="parallax-layer p2" style="top: 15%; right: 10%;">🎪</div>
+    <div class="parallax-layer p3" style="top: 40%; left: -5%;">☁️</div>
+    <div class="parallax-layer p4" style="top: 60%; right: -5%;">☁️</div>
+    <div class="parallax-layer p5" style="top: 80%; left: 10%;">✨</div>
+
+    <style>
+        .parallax-layer {
+            position: fixed;
+            font-size: 3rem;
+            z-index: -1;
+            opacity: 0.6;
+            transition: transform 0.1s linear;
+            will-change: transform;
+        }
+        .p1 { font-size: 4rem; }
+        .p2 { font-size: 5rem; }
+        .p3 { font-size: 8rem; opacity: 0.3; }
+        .p4 { font-size: 6rem; opacity: 0.3; }
+
+        /* 活動日程 - 當前時段高亮 */
+        .t-item.t-now {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7) !important;
+            border: 2.5px solid #f39c12 !important;
+            box-shadow: 0 0 12px rgba(243, 156, 18, 0.4);
+            animation: pulse-glow 2s ease-in-out infinite;
+            transform: scale(1.08);
+        }
+        .t-item.t-done {
+            opacity: 0.45;
+            filter: grayscale(0.3);
+        }
+        .t-item.t-upcoming {
+            opacity: 1;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 8px rgba(243, 156, 18, 0.3); }
+            50% { box-shadow: 0 0 18px rgba(243, 156, 18, 0.6); }
+        }
+    </style>
+
+    <header class="hero-section">
+        <div class="hero-content">
+            <span class="badge">青溪國小</span>
+            <h1 class="main-title">114學年度<br>親職教育日</h1>
+            
+            <!-- 倒數計時 (Small Pill Style) -->
+            <div class="countdown-container">
+                <div class="time-block">
+                    <span id="days" class="number">00</span>
+                    <span class="label">天</span>
+                </div>
+                <div class="separator">:</div>
+                <div class="time-block">
+                    <span id="hours" class="number">00</span>
+                    <span class="label">時</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 跑馬燈 -->
+    <div class="marquee-strip">
+        <p>📢 歡迎蒞臨無限城嘉年華！全校攤位 09:00 準時開賣！請自備環保餐具，愛地球做環保！祝大家玩得開心！</p>
+    </div>
+
+    <!-- 快捷導航 (App Icon 風格) -->
+    <nav class="quick-nav">
+        <a href="stories.html" class="nav-item">
+            <div class="icon-circle story-icon">🏰</div>
+            <span>故事牆</span>
+        </a>
+        <a href="booth-map/index.html" class="nav-item" target="_blank">
+            <div class="icon-circle map-icon">🗺️</div>
+            <span>校園地圖</span>
+        </a>
+    </nav>
+
+    <main class="container">
+        <!-- 活動時程 -->
+        <section class="section-card timeline-card">
+            <h2 class="section-title">📅 活動日程 (3/28)</h2>
+            <div class="timeline-row">
+                <div class="t-item" data-start="08:10" data-end="08:50">
+                    <span class="t-time">08:10</span>
+                    <span class="t-desc">開幕儀式</span>
+                </div>
+                <div class="t-line"></div>
+                <div class="t-item" data-start="08:50" data-end="09:00">
+                    <span class="t-time">08:50</span>
+                    <span class="t-desc">快閃表演</span>
+                </div>
+                <div class="t-line"></div>
+                <div class="t-item" data-start="09:00" data-end="11:30">
+                    <span class="t-time">09:00</span>
+                    <span class="t-desc">園遊會開賣</span>
+                </div>
+                <div class="t-line"></div>
+                <div class="t-item" data-start="11:30" data-end="12:40">
+                    <span class="t-time">11:30</span>
+                    <span class="t-desc">場地復原</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 攤位搜尋 -->
+        <section class="booth-section">
+            <h2 class="section-title">🔍 探索攤位</h2>
+            
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="搜尋班級 (如 506) 或食物...">
+                <button class="search-btn">Go</button>
+            </div>
+
+            <div class="filter-pills">
+                <button class="pill active" data-filter="all">全部</button>
+                <button class="pill" data-filter="food">😋 美食</button>
+                <button class="pill" data-filter="goods">🛍️ 好物</button>
+                <button class="pill" data-filter="game">🎮 遊戲</button>
+            </div>
+
+            <!-- 瀑布流卡片 -->
+            <div class="booth-grid" id="boothGrid">
+                <!-- 由 JS 動態生成 -->
+            </div>
+        </section>
+    </main>
+
+    <!-- 地圖模態視窗 (已改為直接連結攤位地圖，modal 保留但不再使用) -->
+
+    <!-- 底部 -->
+    <footer>
+        <p>© 2026 青溪國小親職教育日</p>
+    </footer>
+
+    <script>
+        // 資料庫
+        const booths = [
+            { cls: "101", name: "一起來逛街", type: "goods", loc: "和平樓 1F", desc: "市集" },
+            { cls: "102", name: "102號寶庫", type: "goods", loc: "和平樓 1F", desc: "餅乾、水果、文具" },
+            { cls: "103", name: "蚤好物、找好物", type: "goods", loc: "和平樓 1F", desc: "手作、二手生活用品、書、玩具、文具" },
+            { cls: "105", name: "五彩繽紛小市集", type: "food", loc: "和平樓 1F", desc: "茶葉蛋、油飯、Q凍、雪Q餅、果汁、爆米花、馬林糖、文具、小公仔、夾娃娃機" },
+            { cls: "106", name: "一溜甜甜屋", type: "food", loc: "和平樓 1F", desc: "奶酪、餅乾、紅茶、奶茶、越南鳥蛋、酥餅、珍珠奶茶、棉花糖餅乾串、蛋塔" },
+            { cls: "108", name: "108快樂小舖", type: "goods", loc: "和平樓 1F", desc: "全新及九成新的生活物品" },
+            { cls: "201", name: "幸福柑仔店", type: "goods", loc: "和平樓 2F", desc: "文具驚喜包、二手小物、娃娃、健康餅乾驚喜包、手工編織小物" },
+            { cls: "203", name: "203快樂屋", type: "food", loc: "和平樓 2F", desc: "冷滷味、炒麵、文具、娃娃" },
+            { cls: "205", name: "二五歡樂市集", type: "goods", loc: "和平樓 2F", desc: "兒童手飾、餅乾、玩具、泡泡機、存錢筒、小汽車、貼紙、布偶、果醬" },
+            { cls: "206", name: "206尋寶店", type: "goods", loc: "和平樓 2F", desc: "二手物品販售" },
+            { cls: "207", name: "寶藏屋", type: "goods", loc: "和平樓 2F", desc: "二手玩具、玩偶、書籍" },
+            { cls: "301", name: "301攤位", type: "food", loc: "和平樓 3F", desc: "飲料、二手良物、馬林糖" },
+            { cls: "302", name: "302奇幻屋", type: "goods", loc: "和平樓 3F", desc: "文具、生活雜貨" },
+            { cls: "303", name: "歡樂33", type: "food", loc: "和平樓 3F", desc: "一口小香腸、彈珠汽水、茶葉蛋、草莓煉乳、玩偶、文具" },
+            { cls: "304", name: "304攤位", type: "food", loc: "和平樓 3F", desc: "滷味、茶葉蛋、綜合果汁、布丁、炒米粉、馬林糖、珍珠奶茶、古早味蛋糕" },
+            { cls: "305", name: "五告吼呷", type: "food", loc: "和平樓 3F", desc: "糖葫蘆、香菇、蛋塔、遊戲（品項暫定）" },
+            { cls: "308", name: "308商店屋", type: "goods", loc: "和平樓 3F", desc: "二手娃娃、吊飾、卡片、茶葉蛋、冰棒、小飯糰、冬瓜茶" },
+            { cls: "309", name: "三九幸福小屋", type: "game", loc: "和平樓 3F", desc: "射擊遊戲" },
+            { cls: "404", name: "魔法天堂", type: "game", loc: "和平樓 4F", desc: "投籃遊戲、各類美食、文具用品" },
+            { cls: "405", name: "405夜市", type: "goods", loc: "和平樓 4F", desc: "二手商品" },
+            { cls: "406", name: "快來六班找好康", type: "goods", loc: "和平樓 4F", desc: "食品、飲料、小益智遊戲、手做商品等" },
+            { cls: "407", name: "不平凡的407", type: "goods", loc: "和平樓 4F", desc: "雪Q餅、彈珠汽水、DIY小吊飾、玩偶、文具、咕卡、積木、二手書" },
+            { cls: "408", name: "408無限城", type: "food", loc: "和平樓 4F", desc: "扭蛋、娃娃、桌遊、餅乾、滷味、飲料、包子、套圈圈、彈珠台" },
+            { cls: "409", name: "歡樂選購409", type: "goods", loc: "和平樓 4F", desc: "文具用品、卡牌、日用品" },
+            { cls: "502", name: "吐司市集", type: "game", loc: "和平樓 5F", desc: "飲料、娃娃、夾娃娃、乒乓球" },
+            { cls: "504", name: "百四可樂", type: "goods", loc: "和平樓 5F", desc: "吃的、玩的、用的通通有" },
+            { cls: "505", name: "無所不能", type: "food", loc: "和平樓 5F", desc: "飲料、茶葉蛋及益智遊戲" },
+            { cls: "506", name: "讚不絕口666", type: "food", loc: "和平樓 5F", desc: "餅乾、糖果、零食、飲料、二手物品" },
+            { cls: "507", name: "宜居7息地", type: "game", loc: "和平樓 5F", desc: "套圈圈、投乒乓球、二手商品、小飾品、娃娃、零嘴、飲料" },
+            { cls: "508", name: "奇雞街坊", type: "goods", loc: "和平樓 5F", desc: "吊飾、娃娃、可愛物品、文具、玩具、書" },
+            { cls: "509", name: "人體拉霸機", type: "game", loc: "和平樓 5F", desc: "三位關主舉課本，三本相同即可獲得小禮物" },
+            { cls: "510", name: "十物招領", type: "food", loc: "和平樓 5F", desc: "小型市集，多種不同攤販供顧客選擇" },
+            { cls: "601", name: "六一玩很大", type: "game", loc: "和平樓 6F", desc: "棒球九宮格、彈跳丟丟球、黏黏小手、魔方競速" },
+            { cls: "602", name: "602遊戲王又贏了!", type: "game", loc: "和平樓 6F", desc: "益智遊戲闖關：腦力+手眼協調大考驗" },
+            { cls: "603", name: "星光影城＆挖寶小市集", type: "goods", loc: "和平樓 6F", desc: "餅乾、飲料、卡通影片欣賞、跳蚤市場" },
+            { cls: "604", name: "四海遊龍", type: "food", loc: "和平樓 6F", desc: "杯裝汽水、冰淇淋、乒乓球投進杯子、茶葉蛋" },
+            { cls: "605", name: "飲飲為傲", type: "food", loc: "和平樓 6F", desc: "販售飲品、甜點、冰淇淋" },
+            { cls: "607", name: "67柑仔店", type: "goods", loc: "和平樓 6F", desc: "娃娃、琥珀糖、雪Q餅、吉他表演" },
+            { cls: "608", name: "八方來財", type: "food", loc: "和平樓 6F", desc: "餅乾、糖果、飲料、益智遊戲：瑞利球" },
+            { cls: "609", name: "9-11", type: "game", loc: "和平樓 6F", desc: "UNO對決、推杯子、射箭、拍立得、許願池" },
+            { cls: "610", name: "魔法販賣部", type: "food", loc: "和平樓 6F", desc: "果汁、水果、手工餅乾、益智遊戲" },
+            { cls: "創造力班", name: "即刻對決", type: "game", loc: "創造力班教室", desc: "影像辨識遊戲+雷切吊飾" },
+            { cls: "幼兒園藍天班", name: "肉肉創作屋", type: "goods", loc: "幼兒園", desc: "多肉植物盆栽DIY" },
+            { cls: "幼兒園彩虹班", name: "什麼都有店", type: "goods", loc: "幼兒園", desc: "二手玩具、文具" }
+        ];
+
+        const grid = document.getElementById('boothGrid');
+        const searchInput = document.getElementById('searchInput');
+        const pills = document.querySelectorAll('.pill');
+
+        function renderBooths(filterType = 'all', searchText = '') {
+            grid.innerHTML = '';
+            
+            const filtered = booths.filter(b => {
+                const matchType = filterType === 'all' || b.type === filterType;
+                const matchText = b.name.includes(searchText) || b.cls.includes(searchText) || (b.desc && b.desc.includes(searchText));
+                return matchType && matchText;
+            });
+
+            if(filtered.length === 0) {
+                grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; color:#999; padding:20px;">找不到相關攤位 🥲</div>';
+                return;
+            }
+
+            filtered.forEach(b => {
+                let typeLabel = b.type === 'food' ? '美食' : (b.type === 'game' ? '遊戲' : '好物');
+                let typeClass = `type-${b.type}`;
+                
+                const card = document.createElement('div');
+                card.className = `booth-card ${typeClass}`;
+                card.innerHTML = `
+                    <div class="booth-header">
+                        <span class="booth-class">${b.cls}</span>
+                        <span class="booth-tag">${typeLabel}</span>
+                    </div>
+                    <h3>${b.name}</h3>
+                    ${b.desc ? `<p class="booth-desc">${b.desc}</p>` : ''}
+                    <p class="booth-loc">📍 ${b.loc}</p>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Init
+        renderBooths();
+
+        // Search Listener
+        searchInput.addEventListener('input', (e) => {
+            const activePill = document.querySelector('.pill.active');
+            renderBooths(activePill.dataset.filter, e.target.value);
+        });
+
+        // Filter Listener
+        pills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                pills.forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                renderBooths(pill.dataset.filter, searchInput.value);
+            });
+        });
+
+        // Countdown Logic
+        const targetDate = new Date("2026-03-28T09:00:00").getTime();
+        
+        // Auto-switch to Event Mode on 2026/03/28
+        const today = new Date();
+        // Check for 3/28 (Month is 0-indexed, so 2 is March)
+        if (today.getFullYear() === 2026 && today.getMonth() === 2 && today.getDate() === 28) {
+            document.body.classList.add('event-day-mode');
+            document.querySelector('.marquee-strip p').innerText = "📢 活動進行中！歡迎蒞臨 114 學年度親職教育日！請多利用下方地圖與攤位搜尋！";
+        }
+
+        // 活動日程 - 根據當前時間自動高亮對應時段（每天都會動）
+        function highlightCurrentSlot() {
+            const now = new Date();
+            const hhmm = now.getHours() * 60 + now.getMinutes();
+            const items = document.querySelectorAll('.t-item[data-start]');
+            items.forEach(item => {
+                const [sh, sm] = item.dataset.start.split(':').map(Number);
+                const [eh, em] = item.dataset.end.split(':').map(Number);
+                const startMin = sh * 60 + sm;
+                const endMin = eh * 60 + em;
+                item.classList.remove('t-now', 't-done', 't-upcoming');
+                if (hhmm >= startMin && hhmm < endMin) {
+                    item.classList.add('t-now');
+                } else if (hhmm >= endMin) {
+                    item.classList.add('t-done');
+                } else {
+                    item.classList.add('t-upcoming');
+                }
+            });
+        }
+        highlightCurrentSlot();
+        setInterval(highlightCurrentSlot, 30000); // 每 30 秒更新一次
+
+        setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            if (distance > 0) {
+                document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+                document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            } else {
+                document.getElementById("days").innerText = "00";
+            }
+        }, 1000);
+
+        // Modal Logic
+        function openMap() { document.getElementById('mapModal').style.display = 'flex'; }
+        function closeMap() { document.getElementById('mapModal').style.display = 'none'; }
+
+        // Parallax Effect (Background)
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            document.querySelectorAll('.bg-shape').forEach((el, index) => {
+                const speed = (index + 1) * 0.1;
+                el.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
+=======
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>青溪國小 114學年度親職教育日 — 攤位地圖</title>
@@ -535,3 +845,4 @@ switchFloor(0);
 </script>
 </body>
 </html>
+>>>>>>> 88ffd1c47ec4b57c798b38ea703f918f2d188085

@@ -296,8 +296,14 @@ const booths = {
   "608": { name: "八方來財", type: "food", desc: "餅乾、糖果、飲料、益智遊戲" },
   "609": { name: "9-11", type: "game", desc: "UNO對決、推杯子、射箭、拍立得" },
   "610": { name: "魔法販賣部", type: "food", desc: "果汁、水果、手工餅乾" },
+  "202": { name: "神奇2號小舖", type: "food", desc: "餅乾、茶葉蛋、彈珠汽水、盲盒、打彈珠、戳戳樂" },
+  "306": { name: "集食廣益", type: "food", desc: "茶葉蛋、鬆餅、杯子蛋糕、海苔飯捲" },
+  "402": { name: "402夢幻歡樂錢天堂", type: "game", desc: "乒乓九宮格、點數大比拚、二手跳蚤市場" },
   "創課教室": { name: "即刻對決", type: "game", desc: "影像辨識遊戲+雷切吊飾" },
   "辦公室": { name: "家長會", type: "goods", desc: "福袋、文創小物" },
+  "太陽班": { name: "好吃好玩的店", type: "goods", desc: "二手物品義賣" },
+  "藍天班": { name: "肉肉創作屋", type: "goods", desc: "多肉植物盆栽DIY" },
+  "彩虹班": { name: "什麼都有店", type: "goods", desc: "二手玩具、文具" },
 };
 
 const typeEmoji = { food: "🍔", goods: "🛍️", game: "🎮" };
@@ -310,6 +316,7 @@ const floors = {
     "信義樓": ["204","205","206","廁所","器材室"],
     "仁愛樓": ["101","102","103","廁所","104","105"],
     "忠孝樓": ["廁所","保健室","川堂","工具室","總務處"],
+    "幼兒園": ["太陽班","藍天班","彩虹班"],
   },
   2: {
     "和平樓": ["401","402","403","廁所","多功能教室","校史室","資源班"],
@@ -343,6 +350,7 @@ function roomColor(name) {
   if (name === "保健室") return { fill: "#FFEBEE", stroke: "#EF9A9A" };
   if (["學務處","總務處","人事室","辦公室","校長室","教務處"].includes(name)) return { fill: "#FFF3E0", stroke: "#FFCC80" };
   if (["器材室","多功能教室","校史室","資源班","資優班","輔導室","團輔室","創課教室","專科教室","音樂教室","科任教室"].includes(name)) return { fill: "#E8F5E9", stroke: "#A5D6A7" };
+  if (["太陽班","藍天班","彩虹班"].includes(name)) return { fill: "#FFF9C4", stroke: "#FDD835" };
   if (["司令台","川堂"].includes(name)) return { fill: "#FAFAFA", stroke: "#E0E0E0" };
   if (name === "工具室") return { fill: "#EFEBE9", stroke: "#BCAAA4" };
   if (name === "圖書館") return { fill: "#F3E5F5", stroke: "#CE93D8" };
@@ -456,6 +464,16 @@ function buildFloorSVG(floorNum) {
     });
   }
 
+  // 幼兒園 - 右上角
+  const kg = data["幼兒園"];
+  if (kg && kg.length > 0) {
+    const kgX = 1150, kgY = 10;
+    svg += `<text x="${kgX + 60}" y="${kgY}" text-anchor="middle" font-size="15" font-weight="bold" fill="#37474F" ${FONT}>【幼兒園】</text>`;
+    kg.forEach((r, i) => {
+      svg += makeRoomH(kgX, kgY + 12 + i * 64, 120, 60, r);
+    });
+  }
+
   return `<svg viewBox="0 0 1400 810" width="100%"><rect width="1400" height="810" fill="white" rx="8"/>${svg}</svg>`;
 }
 
@@ -505,35 +523,4 @@ function switchFloor(num) {
   const svgCont = document.getElementById('svgContainer');
   const legend = document.getElementById('legendBar');
   const boothSection = document.querySelector('.booth-section');
-  const searchWrap = document.querySelector('.search-wrap');
-
-  if (num === 0) {
-    schoolMap.style.display = 'block';
-    svgCont.style.display = 'none';
-    legend.style.display = 'none';
-    boothSection.style.display = 'none';
-    searchWrap.style.display = 'none';
-  } else {
-    schoolMap.style.display = 'none';
-    svgCont.style.display = 'block';
-    legend.style.display = 'flex';
-    boothSection.style.display = 'block';
-    searchWrap.style.display = 'block';
-    svgCont.innerHTML = buildFloorSVG(num);
-    renderBoothList(num, document.getElementById('searchInput').value);
-  }
-}
-
-document.querySelectorAll('.floor-tab').forEach(tab => {
-  tab.addEventListener('click', () => switchFloor(+tab.dataset.floor));
-});
-
-document.getElementById('searchInput').addEventListener('input', e => {
-  renderBoothList(currentFloor, e.target.value);
-});
-
-// Init — 預設顯示學校地圖
-switchFloor(0);
-</script>
-</body>
-</html>
+  const searchWrap = document.querySelector('.search-wrap'

@@ -138,7 +138,15 @@
         </section>
     </main>
 
-    <!-- 地圖模態視窗 (已改為直接連結攤位地圖，modal 保留但不再使用) -->
+    <!-- 地圖模態視窗 (Modal) -->
+    <div id="mapModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeMap()">&times;</span>
+            <h3>🗺️ 校園地圖</h3>
+            <img src="https://drive.google.com/uc?export=view&id=1E7laKuBB4om2t4O2q9bTiMsRO8cXTEKk" alt="Map" style="width:100%; border-radius:10px;">
+            <a href="https://drive.google.com/uc?export=view&id=1E7laKuBB4om2t4O2q9bTiMsRO8cXTEKk" target="_blank" class="full-map-btn">查看清晰大圖</a>
+        </div>
+    </div>
 
     <!-- 底部 -->
     <footer>
@@ -189,9 +197,15 @@
             { cls: "608", name: "八方來財", type: "food", loc: "和平樓 6F", desc: "餅乾、糖果、飲料、益智遊戲：瑞利球" },
             { cls: "609", name: "9-11", type: "game", loc: "和平樓 6F", desc: "UNO對決、推杯子、射箭、拍立得、許願池" },
             { cls: "610", name: "魔法販賣部", type: "food", loc: "和平樓 6F", desc: "果汁、水果、手工餅乾、益智遊戲" },
-            { cls: "創造力班", name: "即刻對決", type: "game", loc: "創造力班教室", desc: "影像辨識遊戲+雷切吊飾" },
+            { cls: "創造力班", name: "即刻對決", type: "game", loc: "仁愛樓 2F 資優班", desc: "影像辨識遊戲+雷切吊飾" },
             { cls: "幼兒園藍天班", name: "肉肉創作屋", type: "goods", loc: "幼兒園", desc: "多肉植物盆栽DIY" },
-            { cls: "幼兒園彩虹班", name: "什麼都有店", type: "goods", loc: "幼兒園", desc: "二手玩具、文具" }
+            { cls: "幼兒園彩虹班", name: "什麼都有店", type: "goods", loc: "幼兒園", desc: "二手玩具、文具" },
+            { cls: "幼兒園太陽班", name: "好吃好玩的店", type: "goods", loc: "幼兒園", desc: "二手物品義賣" },
+            { cls: "202", name: "神奇2號小舖", type: "food", loc: "信義樓 2F", desc: "餅乾、茶葉蛋、彈珠汽水、盲盒、打彈珠、戳戳樂" },
+            { cls: "306", name: "集食廣益", type: "food", loc: "仁愛樓 3F", desc: "茶葉蛋、鬆餅、杯子蛋糕、海苔飯捲" },
+            { cls: "402", name: "402夢幻歡樂錢天堂", type: "game", loc: "和平樓 2F", desc: "乒乓九宮格、點數大比拚、二手跳蚤市場" },
+            { cls: "家長會", name: "家長會", type: "goods", loc: "忠孝樓 2F 辦公室", desc: "福袋、文創小物" },
+            { cls: "資源班", name: "「餅」不簡單", type: "food", loc: "和平樓 2F", desc: "手作餅乾" }
         ];
 
         const grid = document.getElementById('boothGrid');

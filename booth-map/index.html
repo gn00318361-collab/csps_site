@@ -467,14 +467,15 @@ function buildFloorSVG(floorNum) {
   // 幼兒園 - 右上角
   const kg = data["幼兒園"];
   if (kg && kg.length > 0) {
-    const kgX = 1150, kgY = 10;
-    svg += `<text x="${kgX + 60}" y="${kgY}" text-anchor="middle" font-size="15" font-weight="bold" fill="#37474F" ${FONT}>【幼兒園】</text>`;
+    const kgX = 1430, kgY = 30;
+    svg += `<rect x="${kgX-10}" y="${kgY-5}" width="140" height="${kg.length * 64 + 30}" rx="12" fill="#FFFDE7" stroke="#FDD835" stroke-width="2" stroke-dasharray="6,3"/>`;
+    svg += `<text x="${kgX + 60}" y="${kgY + 15}" text-anchor="middle" font-size="15" font-weight="bold" fill="#F57F17" ${FONT}>【幼兒園】</text>`;
     kg.forEach((r, i) => {
-      svg += makeRoomH(kgX, kgY + 12 + i * 64, 120, 60, r);
+      svg += makeRoomH(kgX, kgY + 30 + i * 64, 120, 58, r);
     });
   }
 
-  return `<svg viewBox="0 0 1400 810" width="100%"><rect width="1400" height="810" fill="white" rx="8"/>${svg}</svg>`;
+  return `<svg viewBox="0 0 1600 810" width="100%"><rect width="1600" height="810" fill="white" rx="8"/>${svg}</svg>`;
 }
 
 // Get all booths for a floor
@@ -521,6 +522,3 @@ function switchFloor(num) {
   document.querySelectorAll('.floor-tab').forEach(t => t.classList.toggle('active', +t.dataset.floor === num));
   const schoolMap = document.getElementById('schoolMapContainer');
   const svgCont = document.getElementById('svgContainer');
-  const legend = document.getElementById('legendBar');
-  const boothSection = document.querySelector('.booth-section');
-  const searchWrap = document.querySelector('.search-wrap'

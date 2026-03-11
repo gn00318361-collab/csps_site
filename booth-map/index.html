@@ -498,6 +498,12 @@ function renderBoothList(floorNum, searchText = '') {
     const q = searchText.toLowerCase();
     items = items.filter(b => b.cls.includes(q) || b.name.toLowerCase().includes(q) || (b.desc && b.desc.includes(q)));
   }
+  // 按班級數字排序
+  items.sort((a, b) => {
+    const numA = parseInt(a.cls) || 9999;
+    const numB = parseInt(b.cls) || 9999;
+    return numA - numB;
+  });
   if (items.length === 0) {
     grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:rgba(255,255,255,0.7);padding:20px;">此樓層無攤位或找不到結果</div>';
     return;

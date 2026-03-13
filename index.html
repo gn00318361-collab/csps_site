@@ -262,7 +262,7 @@
             { cls: "608", name: "八方來財", type: "food", loc: "和平樓 6F", desc: "餅乾、糖果、飲料、益智遊戲：瑞利球" },
             { cls: "609", name: "9-11", type: "game", loc: "和平樓 6F", desc: "UNO對決、推杯子、射箭、拍立得、許願池" },
             { cls: "610", name: "魔法販賣部", type: "food", loc: "和平樓 6F", desc: "果汁、水果、手工餅乾、益智遊戲" },
-            { cls: "創造力班", name: "即刻對決", type: "game", loc: "仁愛樓 2F 資優班", desc: "影像辨識遊戲+雷切吊飾" },
+            { cls: "資優班", name: "即刻對決", type: "game", loc: "仁愛樓 2F 資優班", desc: "影像辨識遊戲+雷切吊飾" },
             { cls: "幼兒園藍天班", name: "肉肉創作屋", type: "goods", loc: "幼兒園", desc: "多肉植物盆栽DIY" },
             { cls: "幼兒園彩虹班", name: "什麼都有店", type: "goods", loc: "幼兒園", desc: "二手玩具、文具" },
             { cls: "幼兒園太陽班", name: "好吃好玩的店", type: "goods", loc: "幼兒園", desc: "二手物品義賣" },
@@ -292,7 +292,7 @@
                 if (filterGrade === 'all') {
                     matchGrade = true;
                 } else if (filterGrade === 'other') {
-                    // 非 1~6 年級的班級（幼兒園、家長會、資源班、創造力班等）
+                    // 非 1~6 年級的班級（幼兒園、家長會、資源班、資優班等）
                     matchGrade = isNaN(parseInt(b.cls)) || parseInt(b.cls) < 100 || parseInt(b.cls) >= 700;
                 } else {
                     // 年級篩選：班號首位數字 = 年級
@@ -303,8 +303,8 @@
                 return matchGrade && matchText;
             });
 
-            // 按年級排序：數字班級按號碼，非數字班級自訂順序（幼兒園→創造力班→資源班→家長會最後）
-            const otherOrder = {"幼兒園太陽班":9001,"幼兒園藍天班":9002,"幼兒園彩虹班":9003,"幼兒園雲朵班":9004,"創造力班":9005,"資源班":9006,"家長會":9999};
+            // 按年級排序：數字班級按號碼，非數字班級自訂順序（幼兒園→資優班→資源班→家長會最後）
+            const otherOrder = {"幼兒園太陽班":9001,"幼兒園藍天班":9002,"幼兒園彩虹班":9003,"幼兒園雲朵班":9004,"資優班":9005,"資源班":9006,"家長會":9999};
             filtered.sort((a, b) => {
                 const numA = parseInt(a.cls) || (otherOrder[a.cls] ?? 9998);
                 const numB = parseInt(b.cls) || (otherOrder[b.cls] ?? 9998);

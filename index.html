@@ -25,6 +25,38 @@
         .p3 { font-size: 8rem; opacity: 0.3; }
         .p4 { font-size: 6rem; opacity: 0.3; }
 
+        /* 活動日程 - 改為垂直排列 */
+        .timeline-row {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 0 !important;
+            align-items: stretch !important;
+        }
+        .t-item {
+            display: flex !important;
+            align-items: center !important;
+            gap: 12px !important;
+            padding: 14px 16px !important;
+            width: 100% !important;
+            min-width: unset !important;
+            white-space: nowrap !important;
+        }
+        .t-time {
+            font-size: 1.1rem !important;
+            font-weight: 700 !important;
+            min-width: 56px !important;
+        }
+        .t-desc {
+            font-size: 1rem !important;
+            white-space: nowrap !important;
+        }
+        .t-line {
+            width: 2px !important;
+            height: 12px !important;
+            margin: 0 auto !important;
+            background: #ddd !important;
+        }
+
         /* 活動日程 - 當前時段高亮 */
         .t-item.t-now {
             background: linear-gradient(135deg, #fff3cd, #ffeaa7) !important;

@@ -335,6 +335,7 @@ const floors = {
     "信義樓": ["教務處","201","202","廁所","203"],
     "仁愛樓": ["資優班","輔導室","廁所","團輔室"],
     "忠孝樓": ["廁所","人事室","辦公室","校長室"],
+    "活動中心": ["家長休息區"],
   },
   3: {
     "和平樓": ["406","405","404","廁所","301","302","303","304"],
@@ -358,6 +359,7 @@ const floors = {
 
 // Room style
 function roomColor(name) {
+  if (name === "家長休息區") return { fill: "#C8E6C9", stroke: "#66BB6A" };
   if (name === "廁所") return { fill: "#F5F5F5", stroke: "#BDBDBD" };
   if (name === "保健室") return { fill: "#FFEBEE", stroke: "#EF9A9A" };
   if (["學務處","總務處","人事室","辦公室","校長室","教務處","輔導室"].includes(name)) return { fill: "#FFF3E0", stroke: "#FFCC80" };
@@ -372,6 +374,7 @@ function roomColor(name) {
 }
 
 function roomWidth(name) {
+  if (name === "家長休息區") return 140;
   if (["多功能教室","川堂","圖書館"].includes(name)) return 150;
   if (["專科教室","電腦教室","電算中心"].includes(name)) return 130;
   return 100;
@@ -481,6 +484,18 @@ function buildFloorSVG(floorNum) {
     kg.forEach((r, i) => {
       svg += makeRoomH(kgX, kgY + 30 + i * 64, 120, 58, r);
     });
+  }
+
+  // 活動中心 - 左上角
+  const ac = data["活動中心"];
+  if (ac && ac.length > 0) {
+    const acX = 10, acY = 30;
+    svg += `<rect x="${acX}" y="${acY}" width="160" height="${ac.length * 64 + 30}" rx="12" fill="#E8F5E9" stroke="#66BB6A" stroke-width="2" stroke-dasharray="6,3"/>`;
+    svg += `<text x="${acX + 80}" y="${acY + 15}" text-anchor="middle" font-size="15" font-weight="bold" fill="#2E7D32" ${FONT}>【活動中心 2F】</text>`;
+    ac.forEach((r, i) => {
+      svg += makeRoomH(acX + 10, acY + 30 + i * 64, 140, 58, r);
+    });
+    svg += `<text x="${acX + 80}" y="${acY + 30 + ac.length * 64 + 16}" text-anchor="middle" font-size="11" fill="#666" ${FONT}>☕ 09:00–11:00</text>`;
   }
 
   return `<svg viewBox="0 0 1600 810" width="100%"><rect width="1600" height="810" fill="white" rx="8"/>${svg}</svg>`;

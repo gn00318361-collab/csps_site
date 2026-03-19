@@ -34,6 +34,27 @@
             font-size: 0.85rem !important;
         }
 
+        /* 手機版活動日程 - 縮小字體避免重疊 */
+        @media (max-width: 600px) {
+            .timeline-row {
+                flex-wrap: wrap !important;
+                gap: 4px !important;
+            }
+            .t-item {
+                padding: 6px 6px !important;
+                min-width: 0 !important;
+            }
+            .t-time {
+                font-size: 0.7rem !important;
+            }
+            .t-desc {
+                font-size: 0.6rem !important;
+            }
+            .t-line {
+                min-width: 8px !important;
+            }
+        }
+
         /* 活動日程 - 當前時段高亮 */
         .t-item.t-now {
             background: linear-gradient(135deg, #fff3cd, #ffeaa7) !important;

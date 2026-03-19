@@ -104,6 +104,26 @@
         .search-clear.show {
             display: block;
         }
+
+        /* 影片按鈕 */
+        .video-btn {
+            display: inline-block;
+            margin: 8px 0 4px;
+            padding: 6px 16px;
+            background: linear-gradient(135deg, #e74c3c, #e67e22);
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .video-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.5);
+        }
     </style>
 </head>
 <body>
@@ -272,7 +292,7 @@
             { cls: "507", name: "宜居7息地", type: "game", loc: "和平樓 5F", desc: "套圈圈、投乒乓球、二手商品、小飾品、娃娃、零嘴、飲料" },
             { cls: "508", name: "奇雞街坊", type: "goods", loc: "和平樓 5F", desc: "吊飾、娃娃、可愛物品、文具、玩具、書" },
             { cls: "509", name: "人體拉霸機", type: "game", loc: "和平樓 5F", desc: "三位關主舉課本，三本相同即可獲得小禮物" },
-            { cls: "510", name: "十物招領", type: "food", loc: "和平樓 5F", desc: "小型市集，多種不同攤販供顧客選擇" },
+            { cls: "510", name: "十物招領", type: "food", loc: "和平樓 5F", desc: "小型市集，多種不同攤販供顧客選擇", video: "https://youtube.com/shorts/evJmt5Elp7g" },
             { cls: "601", name: "六一玩很大", type: "game", loc: "和平樓 6F", desc: "棒球九宮格、彈跳丟丟球、黏黏小手、魔方競速" },
             { cls: "602", name: "602遊戲王又贏了!", type: "game", loc: "和平樓 6F", desc: "益智遊戲闖關：腦力+手眼協調大考驗" },
             { cls: "603", name: "星光影城＆挖寶小市集", type: "goods", loc: "和平樓 6F", desc: "餅乾、飲料、卡通影片欣賞、跳蚤市場" },
@@ -297,7 +317,7 @@
             { cls: "606", name: "66便利店", type: "food", loc: "和平樓 4F", desc: "甜點、蛋塔、飲料、餅乾、零食、玩具、遊戲" },
             { cls: "503", name: "人3人海", type: "goods", loc: "和平樓 5F", desc: "毛線之物、偶像卡、娃娃" },
             { cls: "幼兒園雲朵班", name: "全部賣光光", type: "goods", loc: "幼兒園", desc: "二手物品、小吃(滷味)、造型泡澡球、幼兒自製作品" },
-            { cls: "208", name: "我的寶貝，你也喜歡", type: "goods", loc: "和平樓 1F", desc: "文具、玩具、髮飾、娃娃，二手物及全新物品" },
+            { cls: "208", name: "我的寶貝，你也喜歡", type: "food", loc: "和平樓 1F", desc: "文具、玩具、髮飾、娃娃，二手物及全新物品、彈珠汽水、糖葫蘆、奶酪、紅茶、爆米花、多肉植物" },
             { cls: "204", name: "歡樂屋", type: "food", loc: "信義樓 1F", desc: "越南春捲、豆干、義式布丁、銅鑼燒、二手玩具、遊戲卡、書、拼圖、小球過河、百發百中、摺紙、輕黏土DIY" }
         ];
 
@@ -344,6 +364,9 @@
 
                 const card = document.createElement('div');
                 card.className = `booth-card ${typeClass}`;
+
+                const videoBtn = b.video ? `<a href="${b.video}" target="_blank" class="video-btn" onclick="event.stopPropagation()">▶ 觀看影片</a>` : '';
+
                 card.innerHTML = `
                     <div class="booth-header">
                         <span class="booth-class">${b.cls}</span>
@@ -351,8 +374,15 @@
                     </div>
                     <h3>${b.name}</h3>
                     ${b.desc ? `<p class="booth-desc">${b.desc}</p>` : ''}
+                    ${videoBtn}
                     <p class="booth-loc">📍 ${b.loc}</p>
                 `;
+
+                if (b.video) {
+                    card.style.cursor = 'pointer';
+                    card.addEventListener('click', () => window.open(b.video, '_blank'));
+                }
+
                 grid.appendChild(card);
             });
         }

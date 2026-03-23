@@ -217,6 +217,7 @@ footer {
   <button class="floor-tab" data-floor="2">2F</button>
   <button class="floor-tab" data-floor="3">3F</button>
   <button class="floor-tab" data-floor="4">4F</button>
+  <button class="floor-tab" data-floor="5">5F</button>
 </nav>
 
 <div class="search-wrap">
@@ -334,7 +335,7 @@ const floors = {
     "信義樓": ["教務處","201","202","廁所","203"],
     "仁愛樓": ["資優班","輔導室","廁所","團輔室"],
     "忠孝樓": ["廁所","人事室","辦公室","校長室"],
-    "活動中心": ["家長休息區"],
+    "活動中心": [],
   },
   3: {
     "和平樓": ["406","405","404","廁所","301","302","303","304"],
@@ -352,7 +353,6 @@ const floors = {
 
 // Room style
 function roomColor(name) {
-  if (name === "家長休息區") return { fill: "#C8E6C9", stroke: "#66BB6A" };
   if (name === "廁所") return { fill: "#F5F5F5", stroke: "#BDBDBD" };
   if (name === "保健室") return { fill: "#FFEBEE", stroke: "#EF9A9A" };
   if (["學務處","總務處","人事室","辦公室","校長室","教務處","輔導室"].includes(name)) return { fill: "#FFF3E0", stroke: "#FFCC80" };
@@ -367,7 +367,6 @@ function roomColor(name) {
 }
 
 function roomWidth(name) {
-  if (name === "家長休息區") return 140;
   if (["多功能教室","川堂","圖書館"].includes(name)) return 150;
   if (["專科教室","電腦教室","電算中心"].includes(name)) return 130;
   return 100;
